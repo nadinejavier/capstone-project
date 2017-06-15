@@ -1,0 +1,11 @@
+<h1> All upcoming events: </h1>
+
+<% @events.each do |event| %>
+  <%= event.title %>
+  <%= event.date %>
+  <%= event.start_time %>
+  <%= event.end_time %>
+  <%= event.address %>
+  <%= event.description %>
+
+  <% end %>
