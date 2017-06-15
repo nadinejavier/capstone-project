@@ -1,0 +1,32 @@
+<h1> Sign Up </h1>
+
+<%= form_tag '/', method: :post do%>
+  <div>
+    <%= label_tag :first_name %>
+    <%= text_field_tag :first_name %>
+  </div>
+  <div>
+    <%= label_tag :last_name %>
+    <%= text_field_tag :last_name %>
+  </div>
+  <div>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+  </div>
+  <div>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div> 
+    <%= label_tag :age %>
+    <%= text_field_tag :age %>
+  </div>
+  <div> 
+    <%= label_tag :location %>
+    <%= text_field_tag :location %>
+  </div>
+  <div>
+    <%= text_area_tag(:bio, "Tell Us About Yourself!", size: "24x6") %>
+  </div>
+  <%= submit_tag "Sign Up" %>
+<% end %>
