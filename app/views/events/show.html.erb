@@ -1,0 +1,20 @@
+<h1> <%= @event.title %> </h1>
+
+<h3> Info: </h3>
+
+<%= @event.date %>
+<br>
+<%= @event.start_time %>
+<br>
+<%= @event.end_time %>
+<br>
+<%= @event.address %>
+<br>
+<%= @event.description %>
+
+<% if current_user && current_user.id = @event.hosted_by %>
+    <button class="btn btn-primary">  <a href="/events/<%=@event.id%>/edit"> Edit Event </a> </button>
+    <%= form_tag "/events/#{@event.id}", method: :delete do %>
+    <input type="submit" value="DELETE">
+  <% end %>
+<%end%>

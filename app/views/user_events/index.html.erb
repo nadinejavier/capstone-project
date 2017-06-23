@@ -1,0 +1,16 @@
+<h1> Hello, <%= @user.first_name %> ! Here are your upcoming events: </h1>
+
+<% @events.each do |event| %>
+  <%= event.title %>
+  <br>
+  <%= event.date %>
+  <br>
+  <%= event.start_time %>
+  <br>
+  <%= event.end_time %>
+  <br>
+  <%= event.address %>
+  <br>
+
+<% end %>
+

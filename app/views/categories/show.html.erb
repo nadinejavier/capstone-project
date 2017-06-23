@@ -1,0 +1,18 @@
+<h1> <%= @category.title %> </h1>
+
+<h4> <% @events.each do |event| %>
+  <%= event.title %>
+  <br>
+  <%= event.date %>
+  <br>
+  <%= event.start_time %>
+  <br>
+  <%= event.end_time %>
+  <br>
+  <%= event.description %>
+  <br>
+  <% end %>
+
+
+
+  
