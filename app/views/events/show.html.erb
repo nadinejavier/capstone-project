@@ -18,3 +18,9 @@
     <input type="submit" value="DELETE">
   <% end %>
 <%end%>
+
+<% if current_user %>
+<%= form_tag "/events/#{@event.id}", method: :post do %>
+<button> Join Event!</button>
+<% end %>
+<% end %>

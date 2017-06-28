@@ -26,11 +26,15 @@ root to: 'events#index'
  get '/:id/edit' => 'users#edit'
  patch '/:id' => 'users#update'
 
+ #User Events
+ post '/events/:id' => 'user_events#create'
+
 
 namespace :api do
   namespace :v1 do
     get '/events' => 'events#index'
     get '/users' => 'users#index'
+    get '/categories' => 'categories#index'
   end
 end
 #UserEvents

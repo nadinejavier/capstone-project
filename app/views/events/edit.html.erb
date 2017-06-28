@@ -1,41 +1,8 @@
 <h1> Edit Event Here </h1>
 
 <%= form_tag "/events/#{@event.id}", method: :patch do %>
-<div>
-  <%= label_tag :title %>
-  <%= text_field_tag :title, @event.title %>
-</div>
-<div>
-  <%= label_tag :date %>
-  <%= text_field_tag :date, @event.date %>
-</div>
-<div>
-  <%= label_tag :start_time %>
-  <%= text_field_tag :start_time, @event.start_time %>
-</div>
-<div>
-  <%= label_tag :end_time %>
-  <%= text_field_tag :end_time, @event.end_time %>
-</div>
-<div>
-  <%= label_tag :address %>
-  <%= text_field_tag :address, @event.address%>
-</div>
-<div>
-  <%= label_tag :description %>
-  <%= text_area_tag(:description, @event.description, size: "24x6") %>
-</div>
 
-<div ng-controller="ctrl">
-  <h5> Choose Categories </h5>
-    <span ng-repeat="category in categories">
-    <label class="checkbox-inline"><input type="checkbox" ng-onclick="selectedCategory" ng-value="">Animals</label>
-    <label class="checkbox-inline"><input type="checkbox" value="">Education</label>
-    <label class="checkbox-inline"><input type="checkbox" value="">Environment</label>
-    <label class="checkbox-inline"><input type="checkbox" value="">Arts & Culture</label>
-    <label class="checkbox-inline"><input type="checkbox" value="">Community</label>
-    <label class="checkbox-inline"><input type="checkbox" value="">Fundraising</label>
-</div>
+ <%= render "form_partial" %>
 
 <%= submit_tag "Update Event" %>
 

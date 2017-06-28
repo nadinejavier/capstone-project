@@ -5,6 +5,9 @@
       $http.get("/api/v1/events").then(function(response){
         $scope.events = response.data;
       });
+      $http.get("/api/v1/categories.json").then(function(response){
+        $scope.categories = response.data;
+      });
     };
 
 
