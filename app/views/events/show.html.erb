@@ -1,12 +1,14 @@
+<div ng-app="app">
+  <div ng-controller = "ctrl" ng-init="setup()">
 <h1> <%= @event.title %> </h1>
 
 <h3> Info: </h3>
 
-<%= @event.date %>
+<%= @event.date.strftime("%a, %B %e") %>
 <br>
-<%= @event.start_time %>
+<%= @event.start_time.strftime("%l:%M %p") %>
 <br>
-<%= @event.end_time %>
+<%= @event.end_time.strftime("%l:%M %p") %>
 <br>
 <%= @event.address %>
 <br>
@@ -20,7 +22,13 @@
 <%end%>
 
 <% if current_user %>
-<%= form_tag "/events/#{@event.id}", method: :post do %>
-<button> Join Event!</button>
+  <button ng-click='attendEvent()'> Join Event</button>
+
+
+  <button ng-click='leaveEvent()'> Leave Event</button>
+<% else %>
+  <p> Sign in to Join! </p>
+
 <% end %>
-<% end %>
+  </div>
+</div>

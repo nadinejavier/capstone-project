@@ -1,18 +1,18 @@
+
 <div>
   <%= label_tag :title %>
   <%= text_field_tag :title, @event.title %>
 </div>
 <div>
   <%= label_tag :date %>
-  <%= text_field_tag :date, @event.date %>
-</div>
+  <%= datetime_local_field_tag :date, (@event.date || DateTime.now).strftime("%Y-%m-%dT%H:%M") %></div>
 <div>
   <%= label_tag :start_time %>
-  <%= text_field_tag :start_time, @event.start_time %>
+  <%= datetime_local_field_tag :start_time, (@event.start_time || DateTime.now).strftime("%Y-%m-%dT%H:%M") %>
 </div>
 <div>
   <%= label_tag :end_time %>
-  <%= text_field_tag :end_time, @event.end_time %>
+  <%= datetime_local_field_tag :end_time, (@event.end_time || DateTime.now + 1.hour).strftime("%Y-%m-%dT%H:%M") %>
 </div>
 <div>
   <%= label_tag :address %>

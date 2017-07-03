@@ -2,9 +2,9 @@
 
 <% @events.each do |event| %>
 <h3>  <a href = '/events/<%= event.id %>'><%= event.title %> </a> </h3>
-  <%= event.date %>
+  <%=  event.date.strftime("%a, %B %e") %>
   <br>
-  <%= event.start_time %>
+  <%= event.start_time.strftime("%l:%M %p") %>
   <br>
   <br>
  

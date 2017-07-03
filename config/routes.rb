@@ -35,6 +35,7 @@ namespace :api do
     get '/events' => 'events#index'
     get '/users' => 'users#index'
     get '/categories' => 'categories#index'
+    get '/user_events' => 'user_events#index'
   end
 end
 #UserEvents

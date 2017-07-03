@@ -27,6 +27,11 @@ class UsersController < ApplicationController
   def show #User's profile page
     @user = User.find(params[:id])
     @events = @user.events
+    # if current_user.id = @user.id
+    #   render "show.html.erb"
+    # else
+    #   redirect_to '/'
+    # end
   end
 
   def edit

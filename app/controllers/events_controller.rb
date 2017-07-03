@@ -14,6 +14,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    @categories = Category.all
     user = current_user
     @event = Event.new(
       title: params[:title],
@@ -28,8 +29,8 @@ class EventsController < ApplicationController
     if @event.save
       params[:categories].each do |category_id|
         EventCategory.create(
-          event_id = @event.id,
-          category_id = category_id)
+          event_id: @event.id,
+          category_id: category_id)
     end
     flash[:success] = "Event Successfully Created!"
     redirect_to event_path(@event)
@@ -62,7 +63,9 @@ class EventsController < ApplicationController
 
    def destroy
     event = Event.find(params[:id])
-    event.destroy
+    event_categories = EventCategory.find_by(event_id: event.id)
+    event_categories.destroy && event.destroy
+
     flash[:danger] = "Event successfully deleted!"
     redirect_to "/events"
   end
