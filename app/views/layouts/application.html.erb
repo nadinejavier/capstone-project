@@ -32,8 +32,8 @@
           <ul class="dropdown-menu">
             <% if current_user %>  
                 <li>Hi, <%= current_user.first_name %></li>
-                <li><a href="/<%= current_user.id%>">View Profile</a></li>
-                <li><a href="/<%= current_user.id%>/edit">Edit Profile</a></li>
+                <li><a href="/users/<%= current_user.id%>">View Profile</a></li>
+                <li><a href="/users/<%= current_user.id%>/edit">Edit Profile</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/logout">Log Out</a></li>
             <% else %>

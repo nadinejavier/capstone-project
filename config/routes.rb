@@ -21,13 +21,14 @@ root to: 'events#index'
 
 # Users
  get '/signup' => "users#new", as:"new_user"
- post '/' => 'users#create'
- get '/:id' => 'users#show', as: 'user'
- get '/:id/edit' => 'users#edit'
- patch '/:id' => 'users#update'
+ post '/users' => 'users#create'
+ get '/users/:id' => 'users#show', as: 'user'
+ get '/users/:id/edit' => 'users#edit'
+ patch '/users/:id' => 'users#update'
 
  #User Events
- post '/events/:id' => 'user_events#create'
+ post '/user_events' => 'user_events#create'
+ delete '/user_events/:id' => 'user_events#destroy'
 
 
 namespace :api do
