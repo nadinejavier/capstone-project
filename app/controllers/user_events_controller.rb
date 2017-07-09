@@ -16,6 +16,14 @@ class UserEventsController < ApplicationController
     end
   end
 
+  def show 
+    user_events = Event.where(id: params[:event_id])
+    if params[:id] == "random"
+     event = user_events.sample
+     @user = event.users.sample
+     end
+  end
+
   def destroy
     @user_event = UserEvent.find_by(
       user_id: current_user.id,
@@ -23,4 +31,6 @@ class UserEventsController < ApplicationController
     @user_event.destroy
     flash[:info] = "You have left the event"
   end
+
+
 end

@@ -30,6 +30,12 @@
     <% end %>
 <% end %>
 
+<%= form_tag "/user_events/random", method: :get do %>
+      <%= hidden_field_tag :event_id, @event.id %>
+  <a href="/user_events/random"><button type ="submit" class="btn btn-default btn-lg">Connect with a user!</button></a>
+  <% end %>
+
+
   </div>
 </div>
 
