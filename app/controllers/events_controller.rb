@@ -5,7 +5,12 @@ class EventsController < ApplicationController
   end
 
   def show 
-    @event = Event.find(params[:id])
+    @current_events = Event.where(complete: false)
+    if params[:id] == "random"
+      @event = @current_events.sample
+    else
+      @event = Event.find(params[:id])
+    end
     @user_event = UserEvent.find_by(
       user_id: current_user.id,
       event_id: @event.id) || UserEvent.new
@@ -72,5 +77,7 @@ class EventsController < ApplicationController
     flash[:danger] = "Event successfully deleted!"
     redirect_to "/events"
   end
+
+
 
 end

@@ -19,7 +19,7 @@ class UserEventsController < ApplicationController
   def destroy
     @user_event = UserEvent.find_by(
       user_id: current_user.id,
-      event_id: params[:id])
+      event_id: params[:event_id])
     @user_event.destroy
     flash[:info] = "You have left the event"
   end
