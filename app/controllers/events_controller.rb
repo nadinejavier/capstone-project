@@ -35,6 +35,7 @@ class EventsController < ApplicationController
       complete: false
       )
     if @event.save
+      puts @event
       params[:categories].each do |category_id|
         EventCategory.create(
           event_id: @event.id,
@@ -43,6 +44,7 @@ class EventsController < ApplicationController
     flash[:success] = "Event Successfully Created!"
     redirect_to event_path(@event)
   else
+    puts @event.errors.full_messages
     @categories = Category.all
     render :new
   end

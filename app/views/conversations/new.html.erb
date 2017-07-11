@@ -1,7 +1,8 @@
-<h1> Send New Message </h1>
+
+<h1> Send New Message to <%= @user.first_name %></h1>
 
 <%= form_tag conversations_path, method: :post do %>
-  <%= hidden_field_tag :subject, "{:full_name}" %>
+  <%= hidden_field_tag :subject, @user.full_name %>
   <br>
   <div>
     <%= text_area_tag :body, nil, placeholder: "Type message here" %>

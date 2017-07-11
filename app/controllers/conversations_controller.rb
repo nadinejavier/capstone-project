@@ -1,3 +1,4 @@
+
 class ConversationsController < ApplicationController
   def index
     @conversations = current_user.mailbox.conversations
@@ -8,7 +9,7 @@ class ConversationsController < ApplicationController
   end
 
   def new
-    
+    @user = User.find(params[:user_id])
   end
 
   def create 

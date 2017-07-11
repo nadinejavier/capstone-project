@@ -1,12 +1,13 @@
 <div>
   <h2> <%= @user.first_name %> </h2>
   <h2> <%= @user.bio %> </h2>
-  <h3> Here are thier upcoming events: </h3>
+  <h3> Here are their upcoming events: </h3>
   <% @user.events.each do |event| %>
   <%= event.title %>
   <% end %>
 </div>
 
+<a href="/conversations/new?user_id=<%=@user.id%>"><button type ="submit" class="btn btn-default btn-lg">Message <%= @user.first_name %></button></a>
 
 
-<%= link_to "Message #{@user.first_name}", {:action => "new", :controller => "conversations", :user_id => @user.id} %>
+
