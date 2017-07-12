@@ -1,7 +1,18 @@
 <div>
   <h2> Welcome, <%= @user.first_name %> </h2>
   <h3> Here are your upcoming events: </h3>
-  <% @user.events.each do |event| %>
-  <%= event.title %>
+  <% @upcoming_events.each do |upcoming_event| %>
+  <%= upcoming_event.title %>
+  <br>
   <% end %>
 </div>
+
+<div>
+  <h3> Your past events: </h3>
+  <% @pass_events.each do |pass_event| %>
+  <%= pass_event.title %>
+  <br>
+  <% end %>
+  
+</div>
+

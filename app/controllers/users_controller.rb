@@ -27,6 +27,8 @@ class UsersController < ApplicationController
   def show #User's profile page
     @user = User.find(params[:id])
     @events = @user.events
+    @upcoming_events = @events.where(complete: false)
+    @pass_events = @events.where(complete:true)
     # if current_user.id = @user.id
     #   render "show.html.erb"
     # else

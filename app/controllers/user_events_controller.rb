@@ -11,9 +11,18 @@ class UserEventsController < ApplicationController
       event_id: params[:event_id])
     if @user_event.save
       flash[:success] = "You have joined!"
+      redirect_to "/events/#{params[:event_id]}"
     else
       flash[:danger] = "Sign in to join!"
     end
+  end
+
+  def show 
+    user_events = Event.where(id: params[:event_id])
+    if params[:id] == "random"
+     event = user_events.sample
+     @user = event.users.sample
+     end
   end
 
   def destroy
@@ -22,5 +31,8 @@ class UserEventsController < ApplicationController
       event_id: params[:event_id])
     @user_event.destroy
     flash[:info] = "You have left the event"
+    redirect_to "/events/#{params[:event_id]}"
   end
+
+
 end

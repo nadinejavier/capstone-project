@@ -34,7 +34,8 @@ gem 'jbuilder', '~> 2.5'
  gem 'bcrypt', '~> 3.1.7'
  gem 'faker'
  gem 'better_errors'
- gem 'binding_of_callers'
+ gem 'binding_of_callers' 
+ gem 'mailboxer'
 
 
 # Use Capistrano for deployment

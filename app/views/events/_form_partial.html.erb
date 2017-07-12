@@ -20,7 +20,7 @@
 </div>
 <div>
   <%= label_tag :description %>
-  <%= text_area_tag(:description, @event.description, size: "24x6") %>
+  <%= text_field_tag(:description, @event.description, size: 550, maxlength:  4000) %>
 </div>
 
 <!-- <label>Categories:</label>

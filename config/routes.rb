@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 # Events
-root to: 'events#index'
+root to: 'categories#index'
   get '/events' => 'events#index'
   get '/events/new' => 'events#new', as: 'new_event'
   post '/events' => 'events#create'
@@ -28,6 +28,7 @@ root to: 'events#index'
 
  #User Events
  post '/user_events' => 'user_events#create'
+ get '/user_events/:id' => 'user_events#show'
  delete '/user_events/:id' => 'user_events#destroy'
 
 
@@ -39,8 +40,10 @@ namespace :api do
     get '/user_events' => 'user_events#index'
   end
 end
-#UserEvents
-#get '/:user_id/events' => 'user_events#index', as: 'user_events'
+
+resources :conversations do 
+  resources :messages
+end
 
 end
 
