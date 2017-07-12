@@ -1,6 +1,7 @@
-<h1> All Categories: </h1>
+<h1> Welcome to Eventity! Give back to the world and socialize!</h1>
 
 <% @categories.each do |category| %>
-  <%= category.title %>
+  <a href = "/categories/<%= category.id%>"><%= category.title %></a>
+  <br>
   <br>
 <% end %> 

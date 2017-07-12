@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 # Events
-root to: 'events#index'
+root to: 'categories#index'
   get '/events' => 'events#index'
   get '/events/new' => 'events#new', as: 'new_event'
   post '/events' => 'events#create'
