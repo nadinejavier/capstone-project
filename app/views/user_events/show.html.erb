@@ -3,7 +3,7 @@
   <h2> <%= @user.bio %> </h2>
   <h3> Here are their upcoming events: </h3>
   <% @user.events.each do |event| %>
-  <%= event.title %>
+ <a href= "/events/<%=event.id%>"> <%= event.title %></a>
   <% end %>
 </div>
 
