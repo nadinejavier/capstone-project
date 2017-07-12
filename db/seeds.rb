@@ -12,4 +12,3 @@ events = Event.create([{title: 'Ocean Beach Clean Up', date:Time.now , start_tim
 categories = Category.create([{title: 'Animals'}, {title: 'Environment'}, {title: 'Education'}, {title: 'Arts and Culture'}, {title: 'Community'}, {title: 'Fundraising'}])
 
 
-
