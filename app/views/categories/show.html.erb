@@ -4,7 +4,7 @@
 <h4> <% @events.each do |event| %>
  <a href = '/events/<%= event.id %>'> <%= event.title %> </a>
   <br>
-  <%= event.date.to_datetime.strftime("%a, %B %e") %>
+  <%= event.date %>
   <br>
   <%= event.description %>
   <br>
