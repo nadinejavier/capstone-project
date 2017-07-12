@@ -4,11 +4,11 @@
 
 <h3> Info: </h3>
 
-<%= @event.date.to_datetime.strftime("%a, %B %e") %>
+<%= @event.date %>
 <br>
-<%= @event.start_time.to_datetime.strftime("%l:%M %p") %>
+<%= @event.start_time %>
 <br>
-<%= @event.end_time.to_datetime.strftime("%l:%M %p") %>
+<%= @event.end_time %>
 <br>
 <%= @event.address %>
 <br>
