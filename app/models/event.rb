@@ -6,5 +6,6 @@ class Event < ApplicationRecord
   validates :title, presence: true
   validates :title, uniqueness: true
   validates :description, presence: true
-  validates :description, length: {maximum: 500}
+  validates :description, length: {maximum: 5000}
+  acts_as_messageable
 end

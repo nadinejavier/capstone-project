@@ -8,6 +8,8 @@ before_action :authenticate_user!, except: [:index]
     @current_events = Event.where(complete: false)
     if params[:id] == "random"
       @event = @current_events.sample
+    elsif params[:id] == "attendees"
+      render 'attendees.html.erb'
     else
       @event = Event.find(params[:id])
     end
@@ -60,7 +62,7 @@ before_action :authenticate_user!, except: [:index]
 
   def update
     event = Event.find(params[:id])
-    event.update(
+    if event.update(
       title: params[:title],
       date: params[:date],
       start_time: params[:start_time],
@@ -68,7 +70,20 @@ before_action :authenticate_user!, except: [:index]
       address: params[:address],
       description: params[:description],
       )
+     event.categories.destroy_all
+      params[:categories].each do |category_id|
+        EventCategory.create(
+          event_id: event.id,
+          category_id: category_id
+        )
+        end
+        flash[:success] = "Event successfully updated"
     redirect_to event_path(event)
+    else 
+      @categories = Category.all
+      flash[:danger] = "Something went wrong, please check your fields."
+      render :edit
+    end
   end
 
    def destroy

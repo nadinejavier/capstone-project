@@ -1,5 +1,6 @@
 <div>
   <h2> Welcome, <%= @user.first_name %> </h2>
+  <%= image_tag @user.avatar.url(:medium) %> 
   <h3> Here are your upcoming events: </h3>
   <% @upcoming_events.each do |upcoming_event| %>
   <%= upcoming_event.title %>
@@ -15,4 +16,6 @@
   <% end %>
   
 </div>
+
+<a href="/conversations"> View your conversations </a>
 

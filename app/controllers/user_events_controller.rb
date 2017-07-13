@@ -19,9 +19,11 @@ class UserEventsController < ApplicationController
 
   def show 
     user_events = Event.where(id: params[:event_id])
+    @user = user_events.where(user_id: params[:user_id])
     if params[:id] == "random"
      event = user_events.sample
-     @user = event.users.sample
+     users = event.users - [current_user]
+     @user = users.sample
      end
   end
 

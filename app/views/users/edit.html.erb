@@ -1,6 +1,6 @@
 <h1> Edit Your Profile </h1>
 
-<%= form_tag "/users/#{@user.id}", method: :patch do%>
+<%= form_tag "/users/#{@user.id}", multipart: true, method: :patch do%>
   <div>
     <%= label_tag :first_name %>
     <%= text_field_tag :first_name, @user.first_name %>
@@ -12,6 +12,9 @@
   <div>
     <%= label_tag :email %>
     <%= text_field_tag :email, @user.email %>
+  </div>
+  <div>
+  <%=file_field_tag :avatar %>
   </div>
   <div> 
     <%= label_tag :age %>

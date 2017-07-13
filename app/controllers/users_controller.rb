@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- # before_action :authenticate_user!
+
   def new #Sign up page
   end
 
@@ -11,7 +11,8 @@ class UsersController < ApplicationController
       age: params[:age],
       password: params[:password],
       location: params[:location],
-      bio: params[:bio]
+      bio: params[:bio],
+      avatar: params[:avatar]
       )
     if user.save
       session[:user_id] = user.id
@@ -29,15 +30,16 @@ class UsersController < ApplicationController
     @events = @user.events
     @upcoming_events = @events.where(complete: false)
     @pass_events = @events.where(complete:true)
-    # if current_user.id = @user.id
-    #   render "show.html.erb"
-    # else
-    #   redirect_to '/'
-    # end
+    unless @user.id == current_user.id
+      redirect_to '/'
+    end
   end
 
   def edit
     @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      redirect_to '/'
+    end
   end
 
   def update
@@ -49,7 +51,8 @@ class UsersController < ApplicationController
       age: params[:age],
       password: params[:password],
       location: params[:location],
-      bio: params[:bio]
+      bio: params[:bio],
+      avatar: params[:avatar]
       )
     redirect_to user_path(user)
   end
