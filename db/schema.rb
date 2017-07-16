@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713014813) do
+ActiveRecord::Schema.define(version: 20170716162753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,7 +42,6 @@ ActiveRecord::Schema.define(version: 20170713014813) do
     t.string   "title"
     t.string   "address"
     t.text     "description"
-    t.string   "image"
     t.boolean  "complete"
     t.integer  "hosted_by"
     t.datetime "created_at",  null: false
@@ -42,6 +49,9 @@ ActiveRecord::Schema.define(version: 20170713014813) do
     t.datetime "date"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "avatar"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

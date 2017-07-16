@@ -34,7 +34,8 @@ before_action :authenticate_user!, except: [:index]
       address: params[:address],
       description: params[:description],
       hosted_by: user.id,
-      complete: false
+      complete: false,
+      avatar: params[:avatar]
       )
     if @event.save
       puts @event
@@ -69,6 +70,7 @@ before_action :authenticate_user!, except: [:index]
       end_time: params[:end_time],
       address: params[:address],
       description: params[:description],
+      avatar: params[:avatar]
       )
      event.categories.destroy_all
       params[:categories].each do |category_id|

@@ -2,13 +2,17 @@ Rails.application.routes.draw do
 
 # Events
 root to: 'categories#index'
-  get '/events' => 'events#index'
-  get '/events/new' => 'events#new', as: 'new_event'
-  post '/events' => 'events#create'
-  get '/events/:id' => 'events#show', as: 'event'
-  get '/events/:id/edit' => 'events#edit'
-  patch '/events/:id' => 'events#update'
-  delete '/events/:id' => 'events#destroy'
+  # get '/events' => 'events#index'
+  # get '/events/new' => 'events#new', as: 'new_event'
+  # post '/events' => 'events#create'
+  # get '/events/:id' => 'events#show', as: 'event'
+  # get '/events/:id/edit' => 'events#edit'
+  # patch '/events/:id' => 'events#update'
+  # delete '/events/:id' => 'events#destroy'
+
+resources :events do
+  resources :comments
+end
 
  #Sessions
  get '/login' => 'sessions#new'

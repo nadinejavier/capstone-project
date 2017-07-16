@@ -15,53 +15,62 @@
 <%= @event.description %>
 <br>
 <br>
+ <%= image_tag @event.avatar.url(:medium) %> 
+<br>
+<br>
 <h6> Categories </h6>
 <% @event.categories.each do |category| %>
   <%= category.title %>
 <% end %>
-
 <br>
+
+<!-- button logic/ join and leave -->
 <% if current_user.id == @event.hosted_by %>
     <button class="btn btn-default btn-lg">  <a href="/events/<%=@event.id%>/edit"> Edit Event </a> </button>
-    <%= form_tag "/events/#{@event.id}", method: :delete do %>
-    <input type="submit" value="DELETE">
-  <% end %>
-
+      <%= form_tag "/events/#{@event.id}", method: :delete do %>
+        <input type="submit" value="DELETE">
+      <% end %>
 <% else %>
-
   <% if current_user.events.include?(@event) %>
     <%= form_tag "/user_events/#{@user_event.id}", method: :delete do %>
       <%= hidden_field_tag :event_id, @event.id %>
-      <button type ="submit" class="btn btn-default btn-lg">Leave Event!</button>
+        <button type ="submit" class="btn btn-default btn-lg">Leave Event!</button>
     <% end %>
-
-    <% else %>
-
+  <% else %>
     <%= form_tag "/user_events", method: :post do %>
       <%= hidden_field_tag :event_id, @event.id %>
-      <button type ="submit" class="btn btn-default btn-lg">Join Event!</button>
+        <button type ="submit" class="btn btn-default btn-lg">Join Event!</button>
     <% end %>
-
   <% end %>
-
 <% end %>
 
 
 <%= form_tag "/user_events/random", method: :get do %>
-      <%= hidden_field_tag :event_id, @event.id %>
-  <a href="/user_events/random"><button type ="submit" class="btn btn-default btn-lg">Connect with a user!</button></a>
-  <% end %>
-
+  <%= hidden_field_tag :event_id, @event.id %>
+    <a href="/user_events/random"><button type ="submit" class="btn btn-default btn-lg">Connect with a user!</button></a>
+<% end %>
   </div>
 </div>
+<br>
+<br>
 
+<!-- Comments -->
+<div>
+  <%= form_tag "#{@event.id}/comments", method: :post do %>
+    <div>
+      <%= text_area_tag :body %>
+    </div>
+  <%= submit_tag "Add Comment" %>       
+  <% end %>
+</div>
+<br>
+<br>
 
 <div>
-<% @event.users.each do |user| %>
-<%= hidden_field_tag :user_id, user_id%>
- <a href="/user_events/<%=user.id%>"> <%= user.full_name %></a> is attending this event!
- <% end %>
+<% @event.comments.each do |comment| %>
+  <%= comment.user.full_name %> said: <%= comment.body %>
+  <br>
+<% end %>
+<br>
+<br>
 </div>
-
-
-

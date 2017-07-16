@@ -35,9 +35,9 @@ gem 'jbuilder', '~> 2.5'
  gem 'faker'
  gem 'better_errors'
  gem 'binding_of_callers' 
- gem 'mailboxer'
+ gem 'mailboxer', '~> 0.8.0'
  gem "paperclip", "~> 5.0.0"
-
+ gem 'geocoder'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
