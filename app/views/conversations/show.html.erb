@@ -1,6 +1,9 @@
 
-
-<h1> <%= @conversation.subject %> </h1>
+<% if current_user == @conversation.originator %>
+  <h1> <%= @conversation.subject %> </h1>
+<%else%>
+  <h1> <%= @conversation.originator.full_name %> </h1>
+<% end %>
 
 <% @conversation.receipts_for(current_user).each do |receipt| %>
   <div> 
@@ -8,6 +11,7 @@
   <br>
   <%= receipt.message.body %>
   </div>
+  <br>
 <% end %>
 
 <%= form_tag conversation_messages_path(@conversation), method: :post do %>

@@ -19,14 +19,13 @@
   <%= text_field_tag :address, @event.address%>
 </div>
 <div>
+  <%=file_field_tag :avatar %>
+</div>
+<div>
   <%= label_tag :description %>
-  <%= text_field_tag(:description, @event.description, size: 550, maxlength:  4000) %>
+  <%= text_area_tag(:description, @event.description, size: 550, maxlength:  4000) %>
 </div>
 
-<!-- <label>Categories:</label>
-   <label ng-repeat="category in categories">
-            <input type="checkbox" data-checklist-model="newEventCategory" data-checklist-value="{{category.id}}"> {{category.name}}
-    </label> -->
 
 <div>
   <%= label_tag :categories %>

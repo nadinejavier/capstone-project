@@ -2,11 +2,14 @@
 <h1> Send New Message to <%= @user.first_name %></h1>
 
 <%= form_tag conversations_path, method: :post do %>
+  <%= hidden_field_tag :user_id, @user.id %>
   <%= hidden_field_tag :subject, @user.full_name %>
+  <br>
   <br>
   <div>
     <%= text_area_tag :body, nil, placeholder: "Type message here" %>
   </div>
+
 
   <%= submit_tag "Send" %>
 

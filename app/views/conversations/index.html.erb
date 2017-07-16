@@ -1,7 +1,13 @@
 <h1> All Conversations </h1>
 
 <% @conversations.each do |conversation| %>
-  <div>
-  <%= link_to conversation.subject, conversation_path(conversation) %>
-  </div>
+  <% if current_user == conversation.originator %>
+      <%= link_to "Your Conversation with #{conversation.subject}", conversation_path(conversation) %>
+  <%else%>
+      <%= link_to "Your Conversation with #{conversation.originator.full_name}", conversation_path(conversation) %>
+  <% end %>
+  <br>
+  <br>
 <% end %>
+
+
