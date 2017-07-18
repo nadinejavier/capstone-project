@@ -30,9 +30,6 @@ class UsersController < ApplicationController
     @events = @user.events
     @upcoming_events = @events.where(complete: false)
     @pass_events = @events.where(complete:true)
-    unless @user.id == current_user.id
-      redirect_to '/'
-    end
   end
 
   def edit

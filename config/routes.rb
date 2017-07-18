@@ -31,6 +31,7 @@ end
  patch '/users/:id' => 'users#update'
 
  #User Events
+ get '/user_events' => 'user_events#index'
  post '/user_events' => 'user_events#create'
  get '/user_events/:id' => 'user_events#show'
  delete '/user_events/:id' => 'user_events#destroy'

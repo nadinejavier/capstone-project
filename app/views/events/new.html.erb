@@ -1,16 +1,10 @@
- <div ng-app="app">
-   <div ng-controller="eventsCtrl">
+
     <h1> Create New Event Here </h1>
 
-    <%= form_tag '/events', method: :post do %>
+    <%= form_tag '/events', multipart: true, method: :post do %>
 
      <%= render "form_partial" %>
      
      <%= submit_tag "Create Event" %>
 
     <% end %>
-
-    {{ message }}
-     
-   </div>
- </div>

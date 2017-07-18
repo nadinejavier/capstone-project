@@ -1,11 +1,13 @@
-<h1> All upcoming events: </h1>
+<div ng-app="app">
+ <div ng-controller="eventsCtrl"  ng-init="setup()">
 
-<% @events.each do |event| %>
-<h3>  <a href = '/events/<%= event.id %>'><%= event.title %> </a> </h3>
-  <%=  event.date %>
-  <br>
-  <%= event.start_time %>
-  <br>
-  <br>
- 
-  <% end %>
+<h1> All upcoming events: </h1>
+  <div>
+      Filter Events: <input ng-model="titleFilter">
+  </div>
+  <div ng-repeat="event in events | filter: {title: titleFilter}">
+       <a href = '/events/{{event.id}}'><p>{{ event.title }}</p></a>
+        <p>{{ event.date }}</p> 
+  </div>
+  </div>
+</div>

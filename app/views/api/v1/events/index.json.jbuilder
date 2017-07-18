@@ -6,7 +6,7 @@ json.array! @events do |event|
   json.end_time event.end_time
   json.address event.address
   json.description event.description
-  json.image event.image
+  json.avatar event.avatar
   json.complete event.complete
   json.hosted_by event.hosted_by
   json.created_at event.created_at

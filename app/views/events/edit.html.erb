@@ -1,9 +1,15 @@
 <h1> Edit Event Here </h1>
 
-<%= form_tag "/events/#{@event.id}", method: :patch do %>
+<%= form_tag "/events/#{@event.id}", multipart: true, method: :patch do %>
 
  <%= render "form_partial" %>
-
+ <div>
+  <%= label_tag :complete, "Complete?" %>
+  <%= label_tag :complete, "True" %>
+  <%= radio_button_tag(:complete, true) %>
+  <%= label_tag :complete, "False" %>
+  <%= radio_button_tag(:complete, false) %>
+</div>
 <%= submit_tag "Update Event" %>
 
 <% end %>

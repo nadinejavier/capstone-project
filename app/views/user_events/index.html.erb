@@ -1,0 +1,7 @@
+<h1> All Users Attending: </h1>
+
+<% @users.each do |user| %>
+ <a href="/users/<%=user.id%>"> <%= user.full_name %> </a>
+  <br>
+  <br>
+<% end %>

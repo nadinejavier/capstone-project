@@ -1,8 +1,8 @@
 class UserEventsController < ApplicationController
 
   def index # User's public profile page 
-    @user = User.find(params[:user_id])
-    @events = @user.events
+    @event = Event.find(params[:event_id])
+    @users = @event.users
   end
  
   def create 

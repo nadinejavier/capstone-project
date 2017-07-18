@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 before_action :authenticate_user!, except: [:index]
   def index
-    @events = Event.all
+    @events = Event.where(complete: false)
   end
 
   def show 
@@ -70,6 +70,7 @@ before_action :authenticate_user!, except: [:index]
       end_time: params[:end_time],
       address: params[:address],
       description: params[:description],
+      complete: params[:complete],
       avatar: params[:avatar]
       )
      event.categories.destroy_all
@@ -91,7 +92,8 @@ before_action :authenticate_user!, except: [:index]
    def destroy
     event = Event.find(params[:id])
     event_categories = EventCategory.find_by(event_id: event.id)
-    event_categories.destroy && event.destroy
+    user_events = UserEvent.find_by(event_id: event.id)
+    user_events.destroy && event_categories.destroy && event.destroy
 
     flash[:danger] = "Event successfully deleted!"
     redirect_to "/events"
