@@ -58,24 +58,26 @@
                       </li>
                       <li class="menu-item"><a href="about.html">About</a></li>
                       <li class="menu-item"><a href="contact.html">Contact</a></li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Blog</a>
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
                         <ul class="sub-menu">
-                          <li class="menu-item"><a href="post-format.html">Post Formats</a></li>
-                          <li class="menu-item"><a href="#">Post Single</a>
+                          <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
+                          <li class="menu-item"><a href="#">Event Categories</a>
                             <ul class="sub-menu">
-                              <li class="menu-item"><a href="single.html">Single</a></li>
-                              <li class="menu-item"><a href="single-quote.html">Single Quote</a></li>
-                              <li class="menu-item"><a href="single-gallery.html">Single Gallery</a></li>
-                              <li class="menu-item"><a href="single-video.html">Single Video</a></li>
-                              <li class="menu-item"><a href="single-audio.html">Single Audio</a></li>
-                              <li class="menu-item"><a href="single-image.html">Single Image</a></li>
+                              <li class="menu-item"><a href="/categories/1">Animals</a></li>
+                              <li class="menu-item"><a href="/categories/2">Environment</a></li>
+                              <li class="menu-item"><a href="/categories/3">Education</a></li>
+                              <li class="menu-item"><a href="/categories/4">Arts and Culture</a></li>
+                              <li class="menu-item"><a href="/categories/5">Community</a></li>
+                              <li class="menu-item"><a href="/categories/6">Fundraising</a></li>
+                              <li class="menu-item"><a href="/categories/8">Volunteer Programs</a></li>
                             </ul>
+                            <li class="menu-item"><a href="/events/random">**Feeling <i> spontaneous</i>?**</a></li>
                           </li>
                         </ul>
                       </li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Portfolio</a>
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
                         <ul class="sub-menu">
-                          <li class="menu-item"><a href="portfolio.html">Portfolio</a></li>
+                          <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
                           <li class="menu-item"><a href="single-portfolio.html">Portfolio Single</a></li>
                           <li class="menu-item"><a href="archive-portfolio.html">Portfolio Archive</a></li>
                         </ul>
@@ -97,43 +99,11 @@
           </div><!-- .container -->
         </header><!-- #masthead -->
       </div><!-- .site-header-affix-wrapper -->
-
-<div>
-<% if current_user == @user %>
-  <h2> Welcome, <%= @user.first_name %> </h2>
-  <%= image_tag @user.avatar.url(:medium) %> 
-  <h3> Here are your upcoming events: </h3>
-  <% @upcoming_events.each do |upcoming_event| %>
-  <%= upcoming_event.title %>
-  <br>
-  <% end %>
-</div>
-<div>
-  <h3> Your past events: </h3>
-  <% @past_events.each do |past_event| %>
-  <%= past_event.title %>
-  <br>
-  <% end %>
-</div>
-  <a href="/conversations"> View your conversations </a>
-<% else %>
-<div>
-  <h2> <%= @user.first_name %> </h2>
-  <h2> <%= @user.bio %> </h2>
-  <h3> Here are their upcoming events: </h3>
-  <% @user.events.each do |event| %>
- <a href= "/events/<%=event.id%>"> <%= event.title %></a>
-  <% end %>
-</div>
-
-<a href="/conversations/new?user_id=<%=@user.id%>"><button type ="submit" class="btn btn-default btn-lg">Message <%= @user.first_name %></button></a>
-<% end %>
-
-
+<div class="container-fluid">
       <div id="content" class="site-content">
         <div id="primary" class="content-area">
           <main id="main" class="site-main" role="main">
-
+      <% if current_user == @user %> 
             <div class="container">
               <div class="row"> 
               <h2> What's up <%= @user.first_name %>! </h2>
@@ -149,6 +119,7 @@
                         <div class="author-description">
                           <p><%= @user.bio %></p>
                           <a href="/users/<%= @user.id %>/edit" class="more-link"><span class="moretext">Edit Profile</span></a>
+                          <a href="/conversations" class="more-link"><span class="moretext">View Messages</span></a>
                         </div><!-- .author-description -->
                         <div class="author-footer">
                           <div class="author-social">
@@ -202,41 +173,105 @@
                       </li>
                     </ul>
                   </section><!-- .danish_widget_popular_entries -->
-                  
 
-
-                  <section class="widget widget_recent_comments">
+               <section class="widget widget_recent_comments">
                     <h2 class="widget-title">Recent Comments</h2>
                     <ul id="recentcomments">
+                    <% @user.comments.each do |comment| %>
                       <li>
-                        <span class="comment-author-link">Jane</span> 
-                        on <a href="single.html">You look so charming when wearing a glasses</a>
+                        <a href="/events/<%=comment.event_id%>"><span class="comment-author-link"><%=comment.event.title%></span></a> 
+                        "<%=comment.body%>"
                       </li>
-                      <li>
-                        <span class="comment-author-link">Smith</span> 
-                        on <a href="single.html">This road looks foggy</a>
-                      </li>
-                      <li>
-                        <span class="comment-author-link"><a href="#">Danish</a></span> 
-                        on <a href="single.html">Beauty is not just what you see</a>
-                      </li>
+                    <%end%>
                     </ul>
                   </section><!-- .widget_recent_comments -->
-
-                  <section class="widget widget_tag_cloud">
-                    <h2 class="widget-title">Tags</h2>
-                    <div class="tagcloud">
-                      <a href="archive.html">beauty</a> <a href="archive.html">destiny</a>
-                      <a href="archive.html">happy</a> <a href="archive.html">inspiring</a>
-                      <a href="archive.html">live</a> <a href="archive.html">love live</a>
-                      <a href="archive.html">tips</a> <a href="archive.html">captions</a>
-                      <a href="archive.html">dowork</a> <a href="archive.html">mothership</a>
-                    </div>
-                  </section><!-- .widget_tag_cloud -->
                 </div><!-- .col-md-4 -->
               </div><!-- .row -->
             </div><!-- .container -->
+        <% else %>
+            <div class="container">
+              <div class="row"> 
+                <div class="col-md-6">
+                  <section class="widget danish_widget_about">
+                    <div class="about-author-container">
+                      <img src="<%= @user.avatar.url %>" alt="<%= @user.first_name %>">
+                      <div class="about-author-info">
+                        <h2 class="widget-title"><%= @user.full_name %></h2>
+                        <span class="author-subtitle"><%= @user.location %></span>
+                        <span class="author-subtitle">Age: <%= @user.age %></span>
+                        <span class="author-subtitle">Email: <%= @user.email %></span>
+                        <div class="author-description">
+                          <p><%= @user.bio %></p>
+                          <a href="/conversations/new?user_id=<%=@user.id%>" class="more-link"><span class="moretext">Message <%= @user.first_name %></span></a>
+                        </div><!-- .author-description -->
+                        <div class="author-footer">
+                          <div class="author-social">
+                            <a href="https://www.facebook.com/Template-Ninja-1555671317979815/" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/_templateninja" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/templateninja/" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                          </div><!-- .author-social -->
+                        </div><!-- .author-footer -->
+                      </div><!-- .about-author-info -->
+                    </div><!-- .about-author-container -->
+                  </section><!-- .danish_widget_about -->
 
+                  <section class="widget danish_widget_popular_entries">
+                    <h2 class="widget-title">Here are their upcoming events:</h2>
+                    <ul>
+                      <li>
+                    <% @upcoming_events.each do |upcoming_event| %>
+                        <div class="popular-entry-container">
+                          <div class="entry-image">
+                            <img src="<%=upcoming_event.avatar.url%>" alt="/events/<%=upcoming_event.id%>">
+                          </div><!-- .entry-image -->
+                          <div class="entry-content">
+                            <h4 class="entry-title">
+                              <a href="/events/<%=upcoming_event.id%>" rel="bookmark"></a>
+                            </h4>
+                            <span class="entry-category"><a href="/events/<%=upcoming_event.id%>"><%=upcoming_event.title%></a></span>
+                            <span class="entry-datetime"><%=upcoming_event.date%></span>
+                          </div><!-- .entry-content -->
+                        </div><!-- .popular-entry-container -->
+                    <%end%>
+                      </li>
+                    </ul>
+                  <h2 class="widget-title">Here are their past events:</h2>
+                    <ul>
+                      <li>
+                    <% @past_events.each do |past_event| %>
+                        <div class="popular-entry-container">
+                          <div class="entry-image">
+                            <img src="<%=past_event.avatar.url%>" alt="/events/<%=past_event.id%>">
+                          </div><!-- .entry-image -->
+                          <div class="entry-content">
+                            <h4 class="entry-title">
+                              <a href="/events/<%=past_event.id%>" rel="bookmark"></a>
+                            </h4>
+                            <span class="entry-category"><a href="/events/<%=past_event.id%>"><%=past_event.title%></a></span>
+                            <span class="entry-datetime"><%=past_event.date%></span>
+                          </div><!-- .entry-content -->
+                        </div><!-- .popular-entry-container -->
+                      </li>
+                    </ul>
+                  </section><!-- .danish_widget_popular_entries -->
+                <%end%>
+                  <section class="widget widget_recent_comments">
+                    <h2 class="widget-title">Recent Comments</h2>
+                    <ul id="recentcomments">
+                    <% @user.comments.each do |comment| %>
+                      <li>
+                        <span class="comment-author-link"><%=comment.event.title%></span> 
+                        on <a href="single.html"><%=comment.body%></a>
+                      </li>
+                    <%end%>
+                    </ul>
+                  </section><!-- .widget_recent_comments -->
+
+                </div><!-- .col-md-4 -->
+              </div><!-- .row -->
+            </div><!-- .container -->
+          <%end%>
           </main><!-- #main -->
         </div><!-- #primary -->
       </div><!-- #content -->

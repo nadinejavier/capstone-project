@@ -28,7 +28,6 @@ before_action :authenticate_user!, except: [:index]
   end
 
   def create
-    @categories = Category.all
     user = current_user
     @event = Event.new(
       title: params[:title],

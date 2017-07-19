@@ -46,11 +46,11 @@ class UsersController < ApplicationController
       last_name: params[:last_name],
       email: params[:email],
       age: params[:age],
-      password: params[:password],
       location: params[:location],
       bio: params[:bio],
       avatar: params[:avatar]
       )
+    p user.errors.full_messages
     redirect_to user_path(user)
   end
 

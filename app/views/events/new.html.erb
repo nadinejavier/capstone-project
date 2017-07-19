@@ -1,10 +1,151 @@
+<!-- NAVBAR -->
+              <div class="col-sm-9">
+                <nav id="site-navigation" class="main-navigation" role="navigation">
+                  <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><i class="fa fa-align-left"></i><span class="sr-only">Primary Menu</span></button>
 
-    <h1> Create New Event Here </h1>
+                  <div class="menu-testing-menu-container">
+                    <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Profile</a>
+                        <ul class="sub-menu">
+                        <% if current_user %>
+                          <li class="menu-item"><a href="index.html"></a></li>
+                          <li class="menu-item"><a href="/users/<%= current_user.id%>">View Profile</a></li>
+                          <li class="menu-item"><a href="/users/<%= current_user.id%>/edit">Edit Profile</a></li>
+                          <li class="menu-item"><a href="/logout">Log Out</a></li>
+                        <% else %>
+                          <li class="menu-item">
+                            <a data-toggle="modal" href="/signup" data-target="#myModal"> Sign up</a>
+                              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                 <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                     <div class="modal-header">
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                     </div>
+                                     <div class="modal-body"> 
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                       <button type="button" class="btn btn-primary">Save changes</button>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                          </li>
+                          <li class="menu-item">    
+                          <a data-toggle="modal" href="/login" data-target="#myModal"> Log in</a>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                               <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                   <div class="modal-header">
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                   </div>
+                                   <div class="modal-body">
+                                     
+                                   </div>
+                                   <div class="modal-footer">
+                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                     <button type="button" class="btn btn-primary">Save changes</button>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                          </li>
+                          <li class="menu-item"><a href="index-list-sidebar.html">Home list sidebar</a></li>
+                        <% end %>
+                        </ul>
+                      </li>
+                      <li class="menu-item"><a href="about.html">About</a></li>
+                      <li class="menu-item"><a href="contact.html">Contact</a></li>
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
+                        <ul class="sub-menu">
+                          <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
+                          <li class="menu-item"><a href="#">Event Categories</a>
+                            <ul class="sub-menu">
+                              <li class="menu-item"><a href="/categories/1">Animals</a></li>
+                              <li class="menu-item"><a href="/categories/2">Environment</a></li>
+                              <li class="menu-item"><a href="/categories/3">Education</a></li>
+                              <li class="menu-item"><a href="/categories/4">Arts and Culture</a></li>
+                              <li class="menu-item"><a href="/categories/5">Community</a></li>
+                              <li class="menu-item"><a href="/categories/6">Fundraising</a></li>
+                              <li class="menu-item"><a href="/categories/8">Volunteer Programs</a></li>
+                            </ul>
+                            <li class="menu-item"><a href="/events/random">**Feeling <i> spontaneous</i>?**</a></li>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
+                        <ul class="sub-menu">
+                          <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
+                          <li class="menu-item"><a href="single-portfolio.html">Portfolio Single</a></li>
+                          <li class="menu-item"><a href="archive-portfolio.html">Portfolio Archive</a></li>
+                        </ul>
+                      </li>
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Pages</a>
+                        <ul class="sub-menu">
+                          <li class="menu-item"><a href="archive.html">Archive</a></li>
+                          <li class="menu-item"><a href="category.html">Category</a></li>
+                          <li class="menu-item"><a href="search.html">Search</a></li>
+                          <li class="menu-item"><a href="page.html">Page</a></li>
+                          <li class="menu-item"><a href="404.html">404 Page</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </nav><!-- #site-navigation -->
+              </div><!-- .col-sm-8 -->
+            </div><!-- .row -->
+          </div><!-- .container -->
+        </header><!-- #masthead -->
+      </div><!-- .site-header-affix-wrapper -->
+<div class="container-fluid">
+     <!-- #header -->
+      <section id="header" class="heading" style="background-image: url('/img/danish-image-header.jpg');">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="title-desc">
+                <h2>Create A New Event<span>//</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </section><!-- #header -->
 
-    <%= form_tag '/events', multipart: true, method: :post do %>
+      <!-- content -->
+      <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+          <main id="main" class="site-main" role="main">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-9">
+                  <h3>Let's Do This.</h3>
+                  <!-- <form class="comment-form"> -->
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6">
+                    <%= form_tag '/events', multipart: true, method: :post do %>
+                        <h6>Title: </h6><input type="text" class="form-control" name="title">
+                        <h6>Date: </h6><input type="date" class="form-control" name="date">
+                        <h6>Start Time: </h6><input type="time" class="form-control" name="start_time">
+                        <h6>End Time: </h6><input type="time" class="form-control" name="end_time">
+                        <h6>Address: </h6><input type="text" class="form-control" name="address">
+                        <%=file_field_tag :avatar %>
+                        <h6>Description: </h6><textarea class="form-control" rows="10" name="description"></textarea>          
+                        <h6>Category: </h6>
+                        <% @categories.each do |category| %>
+                          <input type="checkbox" name="category_id" value="<%= category.id %>"><%=category.title%><br>
+                        <%end%>
+                        <input type="submit" class="btn btn-danish btn-lg btn-block">
+                      </div><!-- .col-md-6 -->
+                    <% end %>
+                    </div><!-- .row -->
+                  <!-- </form>.comment-form -->
+                </div><!-- .col-sm-9 -->
+              </div><!-- .row -->
+            </div><!-- .container -->
 
-     <%= render "form_partial" %>
-     
-     <%= submit_tag "Create Event" %>
-
-    <% end %>
+          </main><!-- #main -->
+        </div><!-- #primary -->
+      </div><!-- #content -->
