@@ -97,100 +97,16 @@
           </div><!-- .container -->
         </header><!-- #masthead -->
       </div><!-- .site-header-affix-wrapper -->
-      <div class="container-fluid">
 <!-- NAV BAR -->
-
-
-
-<h1> <%= @event.title %> </h1>
-
-<h3> Info: </h3>
-
-<%= @event.date %>
-<br>
-<%= @event.start_time %>
-<br>
-<%= @event.end_time %>
-<br>
-<%= @event.address %>
-<br>
-<%= @event.description %>
-<br>
-<br>
- <%= image_tag @event.avatar.url(:medium) %> 
-<br>
-<br>
-<h6> Categories </h6>
-<% @event.categories.each do |category| %>
-  <a href="/categories/<%=category.id%>"><%= category.title %></a>
-<% end %>
-<br>
-<br>
-<h6> There are <a data-toggle="modal" href="/user_events?event_id=<%= @event.id%>" data-target="#myModal"> <%= @event.users.length %></a> attending this event </h6>
-
-
-
-
-<!-- button logic/ join and leave -->
-<% if current_user.id == @event.hosted_by %>
-    <button class="btn btn-default btn-lg">  <a href="/events/<%=@event.id%>/edit"> Edit Event </a> </button>
-      <%= form_tag "/events/#{@event.id}", method: :delete do %>
-        <input type="submit" value="DELETE">
-      <% end %>
-<% else %>
-  <% if current_user.events.include?(@event) %>
-    <%= form_tag "/user_events/#{@user_event.id}", method: :delete do %>
-      <%= hidden_field_tag :event_id, @event.id %>
-        <button type ="submit" class="btn btn-default btn-lg">Leave Event!</button>
-    <% end %>
-  <% else %>
-    <%= form_tag "/user_events", method: :post do %>
-      <%= hidden_field_tag :event_id, @event.id %>
-        <button type ="submit" class="btn btn-default btn-lg">Join Event!</button>
-    <% end %>
-  <% end %>
-<% end %>
-
-
-<%= form_tag "/user_events/random", method: :get do %>
-  <%= hidden_field_tag :event_id, @event.id %>
-    <a href="/user_events/random"><button type ="submit" class="btn btn-default btn-lg">Connect with a user!</button></a>
-<% end %>
-  </div>
-</div>
-<br>
-<br>
-
-<!-- Comments -->
-<div>
-  <%= form_tag "#{@event.id}/comments", method: :post do %>
-    <div>
-      <%= text_area_tag :body %>
-    </div>
-  <%= submit_tag "Add Comment" %>       
-  <% end %>
-</div>
-<br>
-<br>
-
-<div>
-<% @event.comments.each do |comment| %>
-  <%= comment.user.full_name %> said: <%= comment.body %>
-  <br>
-<% end %>
-<br>
-<br>
-</div>
-
-
+<div class="container-fluid">
 
       <!-- #header -->
-      <section id="header" class="heading" style="background-image: url('assets/img/danish-image-header.jpg');">
+      <section id="header" class="heading" style="background-image: url('<%=@category.image%>');">
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <div class="title-desc">
-                <h2>How to make a cup of coffee more delicious <span>//</span></h2>
+                <h2><%=@event.title%><span>//</span></h2>
               </div>
             </div>
           </div>
@@ -209,257 +125,141 @@
                   <article class="post format-standard hentry">
                     <header class="entry-header">
                       <div class="heading-title">
-                        <h1 class="entry-title">How to make a cup of coffee more delicious</h1>
+                        <h1 class="entry-title"><%=@event.title%></h1>
                       </div>
                       <div class="entry-meta">
-                        <span class="posted-on">Posted on May 8, 2016</span>
-                        <span class="byline"> by <span class="author vcard"><a class="url fn n" href="archive.html">Danish</a></span></span>
-                        <span class="reading-estimation">11 Min Read</span>
-                        <span class="meta-viewer">741 Views</span>
-                        <span class="reading-estimation">8 Comments</span>
+                        <span class="posted-on">Posted on <%=@event.created_at%></span>
+                        <span class="byline"> by <span class="author vcard"><a class="url fn n" href="/users/<%=@host.id%>"><%=@host.first_name%></a></span></span>
+                        <span class="reading-estimation"><a data-toggle="modal" href="/user_events?event_id=<%= @event.id%>" data-target="#myModal"> <%= @event.users.length %></a> Attending</span>
+                        <span class="reading-estimation"><%=@event.comments.length%> Comments</span>
                       </div><!-- .entry-meta -->
                     </header><!-- .entry-header -->
 
+
                     <div class="entry-content">
-                      <p>Human nature is a broad term that encompasses many qualities. Creativity is less a general or amorphous quality and more a very specific capacity to exercise a specific set of skills. Is everyone born with the potential to develop these skills?</p>
-                      <p><img src="assets/img/danish-image-post-07.jpg" alt="Keep this candle burn lighter together"></p>
-                      <p>The individual parts contribute to their sum but don’t try to become the sum.&nbsp;Balance is easy to understand in the physical world, because we experience it all the time. When something is unbalanced, it tends to fall over. You’ve probably been on a seesaw or a teeter-totter at some time in your life — you on one side and a friend on the other.</p>
-                      <blockquote><p>Happiness is not a matter of intensity but of balance, order, rhythm and harmony.</p>
-                      <small>Thomas Merton</small></blockquote>
-                      <h5>EQUALLY DISTANT FROM THE FULCRUM</h5>
-                      <p>Balance is easy to understand in the physical world, because we experience it all the time. When something is unbalanced, it tends to fall over. You’ve probably been on a seesaw or a teeter-totter at some time in your life — you on one side and a friend on the other.&nbsp;Assuming you were both about the same size, you were able to easily balance on the seesaw. The following image appears to be in balance, with two equally sized people equally distant from the fulcrum on which the seesaw balances.</p>
+                      <p><img src="<%=@event.avatar%>" alt="Keep this candle burn lighter together"></p>
+                      <p><%=@event.description%></p>
+                      
                     </div><!-- .entry-content -->
 
+
                     <footer class="entry-footer">
-                      <span class="cat-links">Posted in <a href="archive.html">stories</a>, <a href="archive.html">woman</a></span><span class="tags-links">Tagged <a href="archive.html">beauty</a>, <a href="archive.html">happy</a>, <a href="archive.html">inspiring</a></span>
+                      <span class="cat-links">Posted in <a href="/categories/<%=@category.id%>"><%=@category.title%></a></span>
                     </footer><!-- .entry-footer -->
                   </article><!-- .post -->
 
-                  <div class="entry-author-bio">
-                    <div class="author-bio-avatar">
-                      <img alt="avatar" src="assets/img/danish-image-post-thumbnail-02.jpg" class="avatar avatar-80 photo" height="80" width="80">
-                    </div><!-- .author-bio-avatar -->
-                    <div class="author-bio-description">
-                      <h4><a href="archive.html" rel="author">Danish</a> <small>Web Developer</small></h4>
-                      <p>Sed pharetra nibh eget orci convallis at posuere leo convallis. Sed blandit augue vitae augue scelerisque bibendum. Vivamus sit amet libero turpis, non venenatis urna. In blandit, odio convallis suscipit venenatis.</p><br>
-                      <ul class="social-icon">
-                        <li><a href="http://twitter.com/_templateninja" class="icon-twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="icon-youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="#" class="icon-instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#" class="icon-facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icon-google-plus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="http://templateninja.net" class="icon-website" target="_blank"><i class="fa fa-globe"></i></a></li>
-                      </ul><!-- .social-icon -->
-                    </div><!-- .author-bio-description -->
-                  </div><!-- .entry-author-bio -->
-
-                  <nav class="navigation post-navigation" role="navigation">
-                    <h2 class="screen-reader-text">Post navigation</h2>
-                    <div class="nav-links">
-                      <div class="nav-previous"><a href="#" rel="prev">Fireworks which ignited are quickly exhausted. You know what?</a></div><div class="nav-next"><a href="#" rel="next">You say: Dont leave me, but you are gone. Liar</a></div>
+                    <!-- button logic/ join and leave -->
+                    <% if current_user.id == @event.hosted_by %>
+                         <%= form_tag "/events/#{@event.id}/edit", method: :get do %>
+                            <input type="submit" value="Edit">
+                          <% end %>
+                          <%= form_tag "/events/#{@event.id}", method: :delete do %>
+                            <input type="submit" value="DELETE">
+                          <% end %>
+                    <% else %>
+                      <% if current_user.events.include?(@event) %>
+                        <%= form_tag "/user_events/#{@user_event.id}", method: :delete do %>
+                          <%= hidden_field_tag :event_id, @event.id %>
+                            <button type ="submit" class="btn btn-default btn-lg">Leave Event!</button>
+                        <% end %>
+                      <% else %>
+                        <%= form_tag "/user_events", method: :post do %>
+                          <%= hidden_field_tag :event_id, @event.id %>
+                            <button type ="submit" class="btn btn-default btn-lg">Join Event!</button>
+                        <% end %>
+                      <% end %>
+                    <%= form_tag "/user_events/random", method: :get do %>
+                      <%= hidden_field_tag :event_id, @event.id %>
+                        <a href="/user_events/random"><button type ="submit" class="btn btn-default btn-lg">Connect with a user!</button></a>
+                    <% end %>
+                  <% end %>
+                      </div>
                     </div>
-                  </nav><!-- .navigation -->
+                    <br>
+                    <br>
 
-                  <div class="related-posts">
-                    <h3>You may also like</h3>
-                    <div class="row">
-                      <div class="col-md-3 col-sm-6">
-                        <div class="post-container">
-                          <div class="post-thumbnail">
-                            <a href="single.html"><img src="assets/img/danish-image-post-01.jpg" alt="Conquered the rock with rock!"></a>
-                          </div><!-- .post-thumbnail -->
-                          <span class="post-meta"><a href="single.html">August 8, 2016</a></span>
-                          <h2 class="post-title"><a href="single.html">Conquered the rock with rock!</a></h2>
-                        </div><!-- .post-container -->
-                      </div><!-- .col-md-3 -->
-                      <div class="col-md-3 col-sm-6">
-                        <div class="post-container">
-                          <div class="post-thumbnail">
-                            <a href="single.html"><img src="assets/img/danish-image-post-05.jpg" alt="Grow your own succulent"></a>
-                          </div><!-- .post-thumbnail -->
-                          <span class="post-meta"><a href="single.html">May 24, 2016</a></span>
-                          <h2 class="post-title"><a href="single.html">Grow your own succulent anywhere</a></h2>
-                        </div><!-- .post-container -->
-                      </div><!-- .col-md-3 -->
-                      <div class="col-md-3 col-sm-6">
-                        <div class="post-container">
-                          <div class="post-thumbnail">
-                            <a href="single.html"><img src="assets/img/danish-image-post-03.jpg" alt="Beautiful forest"></a> 
-                          </div><!-- .post-thumbnail -->
-                          <span class="post-meta"><a href="single.html">March 12, 2016</a></span>
-                          <h2 class="post-title"><a href="single.html">Beautiful forest at mount Sindoro</a></h2>
-                        </div><!-- .post-container -->
-                      </div><!-- .col-md-3 -->
-                      <div class="col-md-3 col-sm-6">
-                        <div class="post-container">
-                          <div class="post-thumbnail">
-                            <a href="single.html"><img src="assets/img/danish-image-post-04.jpg" alt="Do not leave your camera"></a>
-                          </div><!-- .post-thumbnail -->
-                          <span class="post-meta"><a href="single.html">June 24, 2016</a></span>
-                          <h2 class="post-title"><a href="single.html">Do not leave your camera when traveling</a></h2>
-                        </div><!-- .post-container -->
-                      </div><!-- .col-md-3 -->
-                    </div><!-- .row -->
-                  </div><!-- .related-posts -->
+                <div clas="col-md-6">
+                 <section class="widget danish_widget_popular_entries">
+                    <h2 class="widget-title">Comments</h2>
+                    <ul>
+                    <% @event.comments.each do |comment| %>
+                      <li>
+                        <div class="popular-entry-container">
+                          <div class="entry-image">
+                            <a href="/users/<%=comment.user.id%>"><img src="<%=comment.user.avatar%>" alt="#"></a>
+                          </div><!-- .entry-image -->
+                          <div class="entry-content">
+                            <h4 class="entry-title">
+                              <%= comment.body%>
+                            </h4>
+                            <span class="entry-category"><a href="/users/<%=comment.user.id%>"><%=comment.user.full_name%></a></span>
+                            <span class="entry-datetime"><%=comment.created_at%></span>
+                          </div><!-- .entry-content -->
+                        </div><!-- .popular-entry-container -->
+                      </li>
+                     <%end%>
+                    </ul>
+                  </section>
+                </div>
+
 
                   <div id="comments" class="comments-area">
                     <div id="respond" class="comment-respond">
-                      <h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond">Cancel reply</a></small></h3>
-                      <form action="" method="post" id="commentform" class="form-horizontal comment-form" novalidate="">
+              
+                      <div id="commentform" class="form-horizontal comment-form" novalidate="">
                         <div class="form-group">
                           <div class="col-sm-12">
-                            <textarea id="comment" class="form-control" rows="6" name="comment" aria-required="true" placeholder=" Your Message : "></textarea>
+                               <%= form_tag "#{@event.id}/comments", method: :post do %>
+                            <div>
+                            <input type="textarea" id="comment" class="form-control" rows="6" name="body" aria-required="true" placeholder="Write a comment... ">
+                            </div>
+                            
                           </div>
                         </div>
-                        <div class="form-group">
-                          <div class="col-sm-4">
-                            <input type="text" name="author" value="" class="form-control" placeholder="*Name :" aria-required="true">
-                          </div>
-                          <div class="col-sm-4">
-                            <input type="email" name="email" value="" class="form-control" placeholder="*Email :" aria-required="true">
-                          </div>
-                          <div class="col-sm-4">
-                            <input type="url" name="url" value="" class="form-control" placeholder="Website :">
-                          </div>
-                        </div>
-                        <p class="form-submit">
+                        <p class="form-submit"> 
                           <input name="submit" type="submit" id="submit" class="btn btn-danish btn-lg btn-block" value="Submit">
-                          <input type="hidden" name="comment_post_ID" value="82" id="comment_post_ID">
-                          <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                         </p>
-                      </form><!-- #commentform -->
+                  
+                      </div><!-- #commentform -->
                     </div><!-- #respond -->
                   </div><!-- #comments -->
+                  <% end %>
+
+                 <div class="related-posts">
+                    <h3>You may also like</h3>
+                    <div class="row">
+                      <div class="col-md-4 col-sm-10">
+                        <div class="post-container">
+                          <div class="post-thumbnail">
+                            <a href="/events/<%=@random_event.id%>"><img src="<%=@random_event.avatar%>" alt="Eventity!"></a>
+                          </div><!-- .post-thumbnail -->
+                          <span class="post-meta"><%=@random_event.date%></span>
+                          <h2 class="post-title"><a href="/events/<%=@random_event.id%>"><%=@random_event.title%></a></h2>
+                        </div><!-- .post-container -->
+                      </div><!-- .col-md-3 -->
+                     </div><!-- .row -->
+                  </div><!-- .related-posts -->
                 </div><!-- .col-md-8 -->
 
                 <div class="col-md-4">
-                  <section class="widget widget_search">
-                    <form role="search" method="get" class="search-form" action="">
-                    <label>
-                      <span class="screen-reader-text">Search for:</span>
-                      <input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
-                    </label>
-                    <input type="submit" class="search-submit" value="Search">
-                    </form><!-- search-form -->
-                  </section><!-- .widget_search -->
-
-                  <section class="widget danish_widget_about">
-                    <div class="about-author-container">
-                      <img src="assets/img/danish-image-about.jpg" alt="Danish Brown">
+                 <section class="widget danish_widget_about">
+                    <div id="about-author-container">
+                      <img src="<%=@host.avatar%>" alt="Danish Brown">
                       <div class="about-author-info">
-                        <h2 class="widget-title">Danish Brown</h2>
-                        <span class="author-subtitle">Young Designer</span>
+                        <a href="/users/<%=@host.id%>"><h2 class="widget-title"><%=@host.full_name%></h2></a>
+                        <span class="author-subtitle"><%=@host.location%></span>
                         <div class="author-description">
-                          <p>Hello i’m danish. I’m 23 years old. I’m a girl who has long hair, big eyes with nice eyebrows, big…</p>
-                          <a href="about.html" class="more-link"><span class="moretext">More biography</span></a>
+                          <p><%=@host.bio%></p>
                         </div><!-- .author-description -->
                         <div class="author-footer">
                           <div class="author-social">
-                            <a href="https://www.facebook.com/Template-Ninja-1555671317979815/" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="http://twitter.com/_templateninja" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/templateninja/" target="_blank"><i class="fa fa-instagram"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="/conversations/new?user_id=<%=@host.id%>"><button type ="submit" class="btn btn-default btn-md">Message <%= @host.first_name %></button></a>
                           </div><!-- .author-social -->
                         </div><!-- .author-footer -->
                       </div><!-- .about-author-info -->
                     </div><!-- .about-author-container -->
                   </section><!-- .danish_widget_about -->
 
-                  <section class="widget danish_widget_popular_entries">
-                    <h2 class="widget-title">Popular Posts</h2>
-                    <ul>
-                      <li>
-                        <div class="popular-entry-container">
-                          <div class="entry-image">
-                            <img src="assets/img/danish-image-post-thumbnail-01.jpg" alt="Prepare your luggage necessary">
-                          </div><!-- .entry-image -->
-                          <div class="entry-content">
-                            <h4 class="entry-title">
-                              <a href="single.html" rel="bookmark">Prepare your luggage necessary when traveling</a>
-                            </h4>
-                            <span class="entry-category"><a href="archive.html">Travel</a></span>
-                            <span class="entry-datetime">May 8, 2016</span>
-                          </div><!-- .entry-content -->
-                        </div><!-- .popular-entry-container -->
-                      </li>
-                      <li>
-                        <div class="popular-entry-container ">
-                          <div class="entry-image">
-                            <img src="assets/img/danish-image-post-thumbnail-02.jpg" alt="how beautiful you are">
-                          </div><!-- .entry-image -->
-                          <div class="entry-content">
-                            <h4 class="entry-title">
-                              <a href="single.html" rel="bookmark">You never know how beautiful you are</a>
-                            </h4>
-                            <span class="entry-category"><a href="archive.html">Love Life</a></span>
-                            <span class="entry-datetime">May 8, 2016</span>
-                          </div><!-- .entry-content -->
-                        </div><!-- .popular-entry-container -->
-                      </li>
-                      <li>
-                        <div class="popular-entry-container ">
-                          <div class="entry-image">
-                            <img src="assets/img/danish-image-post-thumbnail-03.jpg" alt="Hey, autumn is coming!">
-                          </div><!-- .entry-image -->
-                          <div class="entry-content">
-                            <h4 class="entry-title"><a href="single.html" rel="bookmark">Hey, autumn is coming!</a></h4>
-                            <span class="entry-category"><a href="archive.html">Nature</a></span>
-                            <span class="entry-datetime">May 8, 2016</span>
-                          </div><!-- .entry-content -->
-                        </div><!-- .popular-entry-container -->
-                      </li>
-                    </ul>
-                  </section><!-- .danish_widget_popular_entries -->
-
-                  <section class="widget widget_archive">
-                    <h2 class="widget-title">Archives</h2>
-                    <select name="archive-dropdown">
-                      <option value="">Select Month</option>
-                      <option value="">June 2016 &nbsp;(13)</option>
-                      <option value="">April 2016 &nbsp;(79)</option>
-                      <option value="">March 2016 &nbsp;(28)</option>
-                    </select>
-                  </section><!-- .widget_archive -->
-
-                  <section class="widget widget_categories">
-                    <h2 class="widget-title">Categories</h2>
-                    <select name="cat" id="cat" class="postform">
-                      <option value="-1">Select Category</option>
-                      <option value="2">Inspiration&nbsp;&nbsp;(14)</option>
-                      <option value="3">Love Life&nbsp;&nbsp;(41)</option>
-                      <option value="4">Nature&nbsp;&nbsp;(13)</option>
-                      <option value="5">Travel&nbsp;&nbsp;(16)</option>
-                    </select>
-                  </section><!-- .widget_categories -->
-
-                  <section class="widget widget_recent_comments">
-                    <h2 class="widget-title">Recent Comments</h2>
-                    <ul id="recentcomments">
-                      <li>
-                        <span class="comment-author-link">Jane</span> 
-                        on <a href="single.html">You look so charming when wearing a glasses</a>
-                      </li>
-                      <li>
-                        <span class="comment-author-link">Smith</span> 
-                        on <a href="single.html">This road looks foggy</a>
-                      </li>
-                      <li>
-                        <span class="comment-author-link"><a href="#">Danish</a></span> 
-                        on <a href="single.html">Beauty is not just what you see</a>
-                      </li>
-                    </ul>
-                  </section><!-- .widget_recent_comments -->
-
-                  <section class="widget widget_tag_cloud">
-                    <h2 class="widget-title">Tags</h2>
-                    <div class="tagcloud">
-                      <a href="archive.html">beauty</a> <a href="archive.html">destiny</a>
-                      <a href="archive.html">happy</a> <a href="archive.html">inspiring</a>
-                      <a href="archive.html">live</a> <a href="archive.html">love live</a>
-                      <a href="archive.html">tips</a> <a href="archive.html">captions</a>
-                      <a href="archive.html">dowork</a> <a href="archive.html">mothership</a>
-                    </div>
-                  </section><!-- .widget_tag_cloud -->
                 </div><!-- .col-md-4 -->
               </div><!-- .row -->
             </div><!-- .container -->
@@ -468,65 +268,10 @@
         </div><!-- #primary -->
       </div><!-- #content -->
 
-      <!-- partner -->
-      <section id="partner" class="section-partner">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <ul class="list-unstyled brand-img">
-                <li>
-                  <div class="brand-container"><img src="assets/img/danish-image-client-01.png" alt="Everest"></div>
-                </li>   
-                <li>      
-                  <div class="brand-container"><img src="assets/img/danish-image-client-02.png" alt="Lemon juice"></div>
-                </li>   
-                <li>
-                  <div class="brand-container"><img src="assets/img/danish-image-client-01.png" alt="Everest"></div>
-                </li>   
-                <li>
-                  <div class="brand-container"><img src="assets/img/danish-image-client-02.png" alt="Lemon juice"></div>
-                </li>
-              </ul>
-            </div><!-- .col-md-12 -->
-          </div><!-- .row -->
-        </div><!-- .container -->
-      </section><!-- #partner -->
-
       <!-- site-footer -->
       <footer id="colophon" class="site-footer" role="contentinfo">
         <div class="container">
           <div class="row">
-            <div class="col-sm-3">
-              <section class="widget widget_tag_cloud">
-                <h3 class="widget-title">Tags</h3>
-                <div class="tagcloud">
-                  <a href="archive.html">beauty</a> <a href="archive.html">destiny</a>
-                  <a href="archive.html">happy</a> <a href="archive.html">inspiring</a>
-                  <a href="archive.html">live</a> <a href="archive.html">love live</a>
-                  <a href="archive.html">tips</a> <a href="archive.html">captions</a>
-                </div>
-              </section><!-- .widget_tag_cloud -->
-            </div><!-- .col-sm-3 -->
-
-            <div class="col-sm-3">
-              <section class="widget widget_recent_entries">
-                <h3 class="widget-title">Headline</h3>
-                <ul>
-                  <li>
-                    <a href="single.html">Beauty is not just what you see</a>
-                    <span class="post-date">May 19, 2016</span>
-                  </li>
-                  <li>
-                    <a href="single.html">You say: Dont leave me, but you are gone. Liar</a>
-                    <span class="post-date">May 9, 2016</span>
-                  </li>
-                  <li>
-                    <a href="single.html">You never know how beautiful you are</a>
-                    <span class="post-date">May 5, 2016</span>
-                  </li>
-                </ul>
-              </section><!-- .widget_recent_entries -->
-            </div><!-- .col-sm-3 -->
 
             <div class="col-sm-6">
               <section class="widget danish_widget_site_info">

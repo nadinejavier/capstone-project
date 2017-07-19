@@ -90,104 +90,6 @@
                 </div><!-- .site-branding -->
               </div><!-- .col-sm-4 -->
 
-              <div class="col-sm-9">
-                <nav id="site-navigation" class="main-navigation" role="navigation">
-                  <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><i class="fa fa-align-left"></i><span class="sr-only">Primary Menu</span></button>
-
-                  <div class="menu-testing-menu-container">
-                    <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Profile</a>
-                        <ul class="sub-menu">
-                        <% if current_user %>
-                          <li class="menu-item"><a href="index.html"></a></li>
-                          <li class="menu-item"><a href="/users/<%= current_user.id%>">View Profile</a></li>
-                          <li class="menu-item"><a href="/users/<%= current_user.id%>/edit">Edit Profile</a></li>
-                          <li class="menu-item"><a href="/logout">Log Out</a></li>
-                        <% else %>
-                          <li class="menu-item">
-                            <a data-toggle="modal" href="/signup" data-target="#myModal"> Sign up</a>
-                              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                 <div class="modal-dialog" role="document">
-                                   <div class="modal-content">
-                                     <div class="modal-header">
-                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                     </div>
-                                     <div class="modal-body"> 
-                                     </div>
-                                     <div class="modal-footer">
-                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                       <button type="button" class="btn btn-primary">Save changes</button>
-                                     </div>
-                                   </div>
-                                 </div>
-                               </div>
-                          </li>
-                          <li class="menu-item">    
-                          <a data-toggle="modal" href="/login" data-target="#myModal"> Log in</a>
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                               <div class="modal-dialog" role="document">
-                                 <div class="modal-content">
-                                   <div class="modal-header">
-                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                   </div>
-                                   <div class="modal-body">
-                                     
-                                   </div>
-                                   <div class="modal-footer">
-                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                     <button type="button" class="btn btn-primary">Save changes</button>
-                                   </div>
-                                 </div>
-                               </div>
-                             </div>
-                          </li>
-                          <li class="menu-item"><a href="index-list-sidebar.html">Home list sidebar</a></li>
-                        <% end %>
-                        </ul>
-                      </li>
-                      <li class="menu-item"><a href="about.html">About</a></li>
-                      <li class="menu-item"><a href="contact.html">Contact</a></li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Blog</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item"><a href="post-format.html">Post Formats</a></li>
-                          <li class="menu-item"><a href="#">Post Single</a>
-                            <ul class="sub-menu">
-                              <li class="menu-item"><a href="single.html">Single</a></li>
-                              <li class="menu-item"><a href="single-quote.html">Single Quote</a></li>
-                              <li class="menu-item"><a href="single-gallery.html">Single Gallery</a></li>
-                              <li class="menu-item"><a href="single-video.html">Single Video</a></li>
-                              <li class="menu-item"><a href="single-audio.html">Single Audio</a></li>
-                              <li class="menu-item"><a href="single-image.html">Single Image</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Portfolio</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item"><a href="portfolio.html">Portfolio</a></li>
-                          <li class="menu-item"><a href="single-portfolio.html">Portfolio Single</a></li>
-                          <li class="menu-item"><a href="archive-portfolio.html">Portfolio Archive</a></li>
-                        </ul>
-                      </li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Pages</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item"><a href="archive.html">Archive</a></li>
-                          <li class="menu-item"><a href="category.html">Category</a></li>
-                          <li class="menu-item"><a href="search.html">Search</a></li>
-                          <li class="menu-item"><a href="page.html">Page</a></li>
-                          <li class="menu-item"><a href="404.html">404 Page</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </nav><!-- #site-navigation -->
-              </div><!-- .col-sm-8 -->
-            </div><!-- .row -->
-          </div><!-- .container -->
-        </header><!-- #masthead -->
-      </div><!-- .site-header-affix-wrapper -->
       <div class="container-fluid">
       <!-- flash -->
         <% flash.each do |name, message| %>
@@ -197,6 +99,26 @@
           <% end %>
         </div> <!-- flash -->
 <%= yield %>
+  
+          <!-- site-footer -->
+      <footer id="colophon" class="site-footer" role="contentinfo">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-sm-6">
+              <section class="widget danish_widget_site_info">
+                <div class="site-info">
+                  <h4 class="site-brand"><i class="fa fa-recycle"></i> Danish.</h4>
+                  <p>1024 Main Street, Jjrn Plrt Btl<br>+62 (123) 456-7890</p>
+                  <br>
+                  <p class="muted">© 2016 Brand Inc.</p>
+                  <a href="#">Terms of Service</a> <span>/</span> <a href="#">Privacy</a>
+                </div><!-- .site-info -->
+              </section><!-- .danish_widget_site_info -->
+            </div><!-- .col-sm-6 -->
+          </div><!-- .row -->
+        </div><!-- .container -->
+      </footer><!-- #site-footer -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/plugins/jquery.min.js"></script>

@@ -6,6 +6,7 @@ before_action :authenticate_user!, except: [:index]
 
   def show 
     @current_events = Event.where(complete: false)
+
     if params[:id] == "random"
       @event = @current_events.sample
     elsif params[:id] == "attendees"
@@ -13,6 +14,9 @@ before_action :authenticate_user!, except: [:index]
     else
       @event = Event.find(params[:id])
     end
+    @host = User.find_by(id: @event.hosted_by)
+    @category = @event.categories.first
+    @random_event = @category.events.sample
     @user_event = UserEvent.find_by(
       user_id: current_user.id,
       event_id: @event.id) || UserEvent.new

@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @events = @user.events
     @upcoming_events = @events.where(complete: false)
-    @pass_events = @events.where(complete:true)
+    @past_events = @events.where(complete:true)
   end
 
   def edit
