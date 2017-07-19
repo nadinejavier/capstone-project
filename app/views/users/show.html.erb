@@ -1,4 +1,19 @@
 <!-- NAVBAR -->
+    <div id="page" class="site">
+      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+      <div class="site-header-affix-wrapper">
+        <header id="masthead" class="site-header header-dark" role="banner">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="site-branding">
+                  
+                  <h1 class="site-title"><a href="/" rel="home">EVENTITY.</a></h1>
+
+                </div><!-- .site-branding -->
+              </div><!-- .col-sm-4 -->
+
               <div class="col-sm-9">
                 <nav id="site-navigation" class="main-navigation" role="navigation">
                   <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><i class="fa fa-align-left"></i><span class="sr-only">Primary Menu</span></button>
@@ -56,8 +71,6 @@
                         <% end %>
                         </ul>
                       </li>
-                      <li class="menu-item"><a href="about.html">About</a></li>
-                      <li class="menu-item"><a href="contact.html">Contact</a></li>
                       <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
                         <ul class="sub-menu">
                           <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
@@ -69,28 +82,16 @@
                               <li class="menu-item"><a href="/categories/4">Arts and Culture</a></li>
                               <li class="menu-item"><a href="/categories/5">Community</a></li>
                               <li class="menu-item"><a href="/categories/6">Fundraising</a></li>
-                              <li class="menu-item"><a href="/categories/8">Volunteer Programs</a></li>
                             </ul>
+                            <% if current_user %>
+                              <li class="menu-item"><a href="/events/new">Add New Event</a></li>
+                            <%end%>
                             <li class="menu-item"><a href="/events/random">**Feeling <i> spontaneous</i>?**</a></li>
                           </li>
                         </ul>
                       </li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
-                          <li class="menu-item"><a href="single-portfolio.html">Portfolio Single</a></li>
-                          <li class="menu-item"><a href="archive-portfolio.html">Portfolio Archive</a></li>
-                        </ul>
-                      </li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Pages</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item"><a href="archive.html">Archive</a></li>
-                          <li class="menu-item"><a href="category.html">Category</a></li>
-                          <li class="menu-item"><a href="search.html">Search</a></li>
-                          <li class="menu-item"><a href="page.html">Page</a></li>
-                          <li class="menu-item"><a href="404.html">404 Page</a></li>
-                        </ul>
-                      </li>
+                      <li class="menu-item"><a href="/categories/8">Volunteer Programs</a></li>
+                      <li class="menu-item"><a href="contact.html">Contact</a></li>
                     </ul>
                   </div>
                 </nav><!-- #site-navigation -->
@@ -132,9 +133,10 @@
                       </div><!-- .about-author-info -->
                     </div><!-- .about-author-container -->
                   </section><!-- .danish_widget_about -->
-
+                </div> <!-- col-md-6 -->
+                <div class="col-md-6">
                   <section class="widget danish_widget_popular_entries">
-                    <h2 class="widget-title">Here are your upcoming events:</h2>
+                    <h2 class="widget-title">Your upcoming events:</h2>
                     <ul>
                       <li>
                     <% @upcoming_events.each do |upcoming_event| %>
@@ -147,13 +149,13 @@
                               <a href="/events/<%=upcoming_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=upcoming_event.id%>"><%=upcoming_event.title%></a></span>
-                            <span class="entry-datetime"><%=upcoming_event.date%></span>
+                            <span class="entry-datetime"><%=upcoming_event.date.strftime('%A %B %e, %Y ')%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
                       </li>
                     </ul>
-                  <h2 class="widget-title">Here are your past events:</h2>
+                  <h2 class="widget-title">Your past events:</h2>
                     <ul>
                       <li>
                     <% @past_events.each do |past_event| %>
@@ -166,14 +168,14 @@
                               <a href="/events/<%=past_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=past_event.id%>"><%=past_event.title%></a></span>
-                            <span class="entry-datetime"><%=past_event.date%></span>
+                            <span class="entry-datetime"><%=past_event.date.strftime('%A %B %e, %Y ')%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
                       </li>
                     </ul>
                   </section><!-- .danish_widget_popular_entries -->
-
+                </div> <!-- col-md-6 -->
                <section class="widget widget_recent_comments">
                     <h2 class="widget-title">Recent Comments</h2>
                     <ul id="recentcomments">
@@ -189,8 +191,6 @@
               </div><!-- .row -->
             </div><!-- .container -->
         <% else %>
-            <div class="container">
-              <div class="row"> 
                 <div class="col-md-6">
                   <section class="widget danish_widget_about">
                     <div class="about-author-container">
@@ -202,7 +202,7 @@
                         <span class="author-subtitle">Email: <%= @user.email %></span>
                         <div class="author-description">
                           <p><%= @user.bio %></p>
-                          <a href="/conversations/new?user_id=<%=@user.id%>" class="more-link"><span class="moretext">Message <%= @user.first_name %></span></a>
+                          <a href="/conversations/new?user_id=<%=@user.id%>" class="more-link"><span class="moretext">Message</span></a>
                         </div><!-- .author-description -->
                         <div class="author-footer">
                           <div class="author-social">
@@ -215,9 +215,10 @@
                       </div><!-- .about-author-info -->
                     </div><!-- .about-author-container -->
                   </section><!-- .danish_widget_about -->
-
+                </div> <!-- col-md-6 -->
+                <div class="col-md-6">
                   <section class="widget danish_widget_popular_entries">
-                    <h2 class="widget-title">Here are their upcoming events:</h2>
+                    <h2 class="widget-title"> Upcoming events:</h2>
                     <ul>
                       <li>
                     <% @upcoming_events.each do |upcoming_event| %>
@@ -230,13 +231,13 @@
                               <a href="/events/<%=upcoming_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=upcoming_event.id%>"><%=upcoming_event.title%></a></span>
-                            <span class="entry-datetime"><%=upcoming_event.date%></span>
+                            <span class="entry-datetime"><%=upcoming_event.date.strftime('%A %B %e, %Y ')%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
                       </li>
                     </ul>
-                  <h2 class="widget-title">Here are their past events:</h2>
+                  <h2 class="widget-title">Past events:</h2>
                     <ul>
                       <li>
                     <% @past_events.each do |past_event| %>
@@ -249,25 +250,25 @@
                               <a href="/events/<%=past_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=past_event.id%>"><%=past_event.title%></a></span>
-                            <span class="entry-datetime"><%=past_event.date%></span>
+                            <span class="entry-datetime"><%=past_event.date.strftime('%A %B %e, %Y ')%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
+                    <%end%>
                       </li>
                     </ul>
                   </section><!-- .danish_widget_popular_entries -->
-                <%end%>
-                  <section class="widget widget_recent_comments">
+                </div> <!-- col-md-6 -->
+               <section class="widget widget_recent_comments">
                     <h2 class="widget-title">Recent Comments</h2>
                     <ul id="recentcomments">
                     <% @user.comments.each do |comment| %>
                       <li>
-                        <span class="comment-author-link"><%=comment.event.title%></span> 
-                        on <a href="single.html"><%=comment.body%></a>
+                        <a href="/events/<%=comment.event_id%>"><span class="comment-author-link"><%=comment.event.title%></span></a> 
+                        "<%=comment.body%>"
                       </li>
                     <%end%>
                     </ul>
                   </section><!-- .widget_recent_comments -->
-
                 </div><!-- .col-md-4 -->
               </div><!-- .row -->
             </div><!-- .container -->
@@ -275,3 +276,4 @@
           </main><!-- #main -->
         </div><!-- #primary -->
       </div><!-- #content -->
+  </div>

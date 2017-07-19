@@ -1,4 +1,19 @@
 <!-- NAVBAR -->
+    <div id="page" class="site">
+      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+      <div class="site-header-affix-wrapper">
+        <header id="masthead" class="site-header header-dark" role="banner">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="site-branding">
+                  
+                  <h1 class="site-title"><a href="/" rel="home">EVENTITY.</a></h1>
+
+                </div><!-- .site-branding -->
+              </div><!-- .col-sm-4 -->
+
               <div class="col-sm-9">
                 <nav id="site-navigation" class="main-navigation" role="navigation">
                   <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><i class="fa fa-align-left"></i><span class="sr-only">Primary Menu</span></button>
@@ -42,22 +57,18 @@
                                      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                                    </div>
                                    <div class="modal-body">
-                                     
+                                  
                                    </div>
                                    <div class="modal-footer">
                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                     <button type="button" class="btn btn-primary">Save changes</button>
                                    </div>
                                  </div>
                                </div>
                              </div>
                           </li>
-                          <li class="menu-item"><a href="index-list-sidebar.html">Home list sidebar</a></li>
                         <% end %>
                         </ul>
                       </li>
-                      <li class="menu-item"><a href="about.html">About</a></li>
-                      <li class="menu-item"><a href="contact.html">Contact</a></li>
                       <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
                         <ul class="sub-menu">
                           <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
@@ -69,28 +80,16 @@
                               <li class="menu-item"><a href="/categories/4">Arts and Culture</a></li>
                               <li class="menu-item"><a href="/categories/5">Community</a></li>
                               <li class="menu-item"><a href="/categories/6">Fundraising</a></li>
-                              <li class="menu-item"><a href="/categories/8">Volunteer Programs</a></li>
                             </ul>
+                            <% if current_user %>
+                              <li class="menu-item"><a href="/events/new">Add New Event</a></li>
+                            <%end%>
                             <li class="menu-item"><a href="/events/random">**Feeling <i> spontaneous</i>?**</a></li>
                           </li>
                         </ul>
                       </li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
-                          <li class="menu-item"><a href="single-portfolio.html">Portfolio Single</a></li>
-                          <li class="menu-item"><a href="archive-portfolio.html">Portfolio Archive</a></li>
-                        </ul>
-                      </li>
-                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Pages</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item"><a href="archive.html">Archive</a></li>
-                          <li class="menu-item"><a href="category.html">Category</a></li>
-                          <li class="menu-item"><a href="search.html">Search</a></li>
-                          <li class="menu-item"><a href="page.html">Page</a></li>
-                          <li class="menu-item"><a href="404.html">404 Page</a></li>
-                        </ul>
-                      </li>
+                      <li class="menu-item"><a href="/categories/8">Volunteer Programs</a></li>
+                      <li class="menu-item"><a href="contact.html">Contact</a></li>
                     </ul>
                   </div>
                 </nav><!-- #site-navigation -->

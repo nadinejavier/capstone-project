@@ -1,13 +1,138 @@
-<div>
-  <h2> <%= @user.first_name %> </h2>
-  <h2> <%= @user.bio %> </h2>
-  <h3> Here are their upcoming events: </h3>
-  <% @user.events.each do |event| %>
- <a href= "/events/<%=event.id%>"> <%= event.title %></a>
-  <% end %>
-</div>
+<!-- NAVBAR -->
+    <div id="page" class="site">
+      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-<a href="/conversations/new?user_id=<%=@user.id%>"><button type ="submit" class="btn btn-default btn-lg">Message <%= @user.first_name %></button></a>
+      <div class="site-header-affix-wrapper">
+        <header id="masthead" class="site-header header-dark" role="banner">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="site-branding">
+                  
+                  <h1 class="site-title"><a href="/" rel="home">EVENTITY.</a></h1>
 
+                </div><!-- .site-branding -->
+              </div><!-- .col-sm-4 -->
 
+              <div class="col-sm-9">
+                <nav id="site-navigation" class="main-navigation" role="navigation">
+                  <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><i class="fa fa-align-left"></i><span class="sr-only">Primary Menu</span></button>
 
+                  <div class="menu-testing-menu-container">
+                    <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Profile</a>
+                        <ul class="sub-menu">
+                        <% if current_user %>
+                          <li class="menu-item"><a href="index.html"></a></li>
+                          <li class="menu-item"><a href="/users/<%= current_user.id%>">View Profile</a></li>
+                          <li class="menu-item"><a href="/users/<%= current_user.id%>/edit">Edit Profile</a></li>
+                          <li class="menu-item"><a href="/logout">Log Out</a></li>
+                        <% else %>
+                          <li class="menu-item">
+                            <a data-toggle="modal" href="/signup" data-target="#myModal"> Sign up</a>
+                              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                 <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                     <div class="modal-header">
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                     </div>
+                                     <div class="modal-body"> 
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                       <button type="button" class="btn btn-primary">Save changes</button>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                          </li>
+                          <li class="menu-item">    
+                          <a data-toggle="modal" href="/login" data-target="#myModal"> Log in</a>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                               <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                   <div class="modal-header">
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                   </div>
+                                   <div class="modal-body">
+                                  
+                                   </div>
+                                   <div class="modal-footer">
+                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                          </li>
+                        <% end %>
+                        </ul>
+                      </li>
+                      <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">Events</a>
+                        <ul class="sub-menu">
+                          <li class="menu-item"><a href="/events">All Upcoming Events</a></li>
+                          <li class="menu-item"><a href="#">Event Categories</a>
+                            <ul class="sub-menu">
+                              <li class="menu-item"><a href="/categories/1">Animals</a></li>
+                              <li class="menu-item"><a href="/categories/2">Environment</a></li>
+                              <li class="menu-item"><a href="/categories/3">Education</a></li>
+                              <li class="menu-item"><a href="/categories/4">Arts and Culture</a></li>
+                              <li class="menu-item"><a href="/categories/5">Community</a></li>
+                              <li class="menu-item"><a href="/categories/6">Fundraising</a></li>
+                            </ul>
+                            <% if current_user %>
+                              <li class="menu-item"><a href="/events/new">Add New Event</a></li>
+                            <%end%>
+                            <li class="menu-item"><a href="/events/random">**Feeling <i> spontaneous</i>?**</a></li>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item"><a href="/categories/8">Volunteer Programs</a></li>
+                      <li class="menu-item"><a href="contact.html">Contact</a></li>
+                    </ul>
+                  </div>
+                </nav><!-- #site-navigation -->
+              </div><!-- .col-sm-8 -->
+            </div><!-- .row -->
+          </div><!-- .container -->
+        </header><!-- #masthead -->
+      </div><!-- .site-header-affix-wrapper -->
+<div class="container-fluid">
+      <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+          <main id="main" class="site-main" role="main">
+          <h1><i>   Say Hi! </i></h1>
+            <div class="container">
+              <div class="row"> 
+                <div class="col-md-6">
+                  <section class="widget danish_widget_about">
+                    <div class="about-author-container">
+                      <img src="<%= @user.avatar.url %>" alt="<%= @user.first_name %>">
+                      <div class="about-author-info">
+                        <h2 class="widget-title"><%= @user.full_name %></h2>
+                        <span class="author-subtitle"><%= @user.location %></span>
+                        <span class="author-subtitle">Email: <%= @user.email %></span>
+                        <div class="author-description">
+                          <p><%= @user.bio %></p>
+                          <a href="/users/<%=@user.id%>" class="more-link"><span class="moretext">View Profile</span></a>
+                          <a href="/conversations/new?user_id=<%=@user.id%>" class="more-link"><span class="moretext">Message</span></a>
+                        </div><!-- .author-description -->
+                        <div class="author-footer">
+                          <div class="author-social">
+                            <a href="https://www.facebook.com/Template-Ninja-1555671317979815/" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/_templateninja" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/templateninja/" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                          </div><!-- .author-social -->
+                        </div><!-- .author-footer -->
+                      </div><!-- .about-author-info -->
+                    </div><!-- .about-author-container -->
+                  </section><!-- .danish_widget_about -->
+                </div> <!-- col-md-6 -->
+              </div><!-- .row -->
+            </div><!-- .container -->
+          </main><!-- #main -->
+        </div><!-- #primary -->
+      </div><!-- #content -->
+  </div>

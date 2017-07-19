@@ -1,4 +1,4 @@
-<h1> Sign Up </h1>
+<h1> <i>Sign Up</i> </h1>
 
 <%= form_tag "/users", multipart: true, method: :post do%>
   <div>
@@ -30,7 +30,7 @@
   </div>
   <div>
     <%= label_tag :bio %>
-    <%= text_area_tag(:bio, "Tell Us About Yourself!", size: "24x6") %>
+    <%= text_area_tag(:bio, nil, placeholder:"Tell Us About Yourself!", size: "24x6") %>
   </div>
   <%= submit_tag "Sign Up" %>
 <% end %>

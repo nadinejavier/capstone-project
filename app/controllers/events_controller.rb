@@ -15,8 +15,8 @@ before_action :authenticate_user!, except: [:index]
       @event = Event.find(params[:id])
     end
     @host = User.find_by(id: @event.hosted_by)
-    @category = @event.categories.first
-    @random_event = @category.events.sample
+    @categories = @event.categories
+    @random_event = @categories.first.events.sample
     @user_event = UserEvent.find_by(
       user_id: current_user.id,
       event_id: @event.id) || UserEvent.new
@@ -42,7 +42,7 @@ before_action :authenticate_user!, except: [:index]
       )
     if @event.save
       puts @event
-      params[:categories].each do |category_id|
+      params[:category_ids].each do |category_id|
         EventCategory.create(
           event_id: @event.id,
           category_id: category_id)
