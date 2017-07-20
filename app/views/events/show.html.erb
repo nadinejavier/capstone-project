@@ -137,6 +137,7 @@
                       <p><img src="<%=@event.avatar%>" alt="Keep this candle burn lighter together"></p>
                       <h4><strong><%=@event.date.strftime('%a %B %e, %Y ')%></strong><br>
                       <strong><%=@event.start_time.strftime('%l:%M %p')%></strong> - <strong><%=@event.end_time.strftime('%l:%M %p ')%></strong></h4>
+                      <p><%=@event.address%></p>               
                       <p><i><%=@event.description%></i></p>               
                     </div><!-- .entry-content -->
                     <footer class="entry-footer">
@@ -181,6 +182,7 @@
 
                 <div class="col-md-4">
                   <section class="widget danish_widget_about">
+                  <h2> Hosted By </h2>
                     <div class="about-author-container">
                       <img src="<%=@host.avatar%>" alt="Danish Brown">
                       <div class="about-author-info">
@@ -272,54 +274,34 @@
                   </div><!-- .related-posts -->
                 </div><!-- .col-md-8 -->
               </div>
-                <div class="col-md-4">
-                  <section class="widget danish_widget_about">
-                    <div class="about-author-container">
-                      <img src="<%=@host.avatar%>" alt="Danish Brown">
-                      <div class="about-author-info">
-                        <a href="/users/<%=@host.id%>"><h2 class="widget-title"><%=@host.full_name%></h2></a>
-                        <span class="author-subtitle"><%=@host.location%></span>
-                        <div class="author-description">
-                             <p><%=@host.bio%></p>
-                          <a href="/conversations/new?user_id=<%=@host.id%>" class="more-link"><span class="moretext">Message</span></a>
-                        </div><!-- .author-description -->
-                        <div class="author-footer">
-                          <div class="author-social">
-                            <a href="https://www.facebook.com/Template-Ninja-1555671317979815/" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="http://twitter.com/_templateninja" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/templateninja/" target="_blank"><i class="fa fa-instagram"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                          </div><!-- .author-social -->
-                        </div><!-- .author-footer -->
-                      </div><!-- .about-author-info -->
-                    </div><!-- .about-author-container -->
-                  </section>
             </div><!-- .container -->
           </main><!-- #main -->
         </div><!-- #primary -->
       </div><!-- #content -->
 </div>
-      <!-- site-footer -->
-      <footer id="colophon" class="site-footer" role="contentinfo">
+
+
+
+
+      <!-- copyright -->
+      <section id="copyright" class="copyright">
         <div class="container">
           <div class="row">
+            <div class="col-sm-6 copy-left">
+              Copyright © 2016 <a href="http://templateninja.net"><strong>TemplateNinja</strong></a>. All Right Reserved.
+            </div><!-- .col-sm-6 -->
 
-            <div class="col-sm-6">
-              <section class="widget danish_widget_site_info">
-                <div class="site-info">
-                  <h4 class="site-brand"><i class="fa fa-recycle"></i> Danish.</h4>
-                  <p>1024 Main Street, Jjrn Plrt Btl<br>+62 (123) 456-7890</p>
-                  <br>
-                  <p class="muted">© 2016 Brand Inc.</p>
-                  <a href="#">Terms of Service</a> <span>/</span> <a href="#">Privacy</a>
-                </div><!-- .site-info -->
-              </section><!-- .danish_widget_site_info -->
+            <div class="col-sm-6 copy-right">
+              <ul class="social-icon">
+                <li><a href="http://twitter.com/_templateninja" target="_blank" class="icon-twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/Template-Ninja-1555671317979815" target="_blank" class="icon-facebook"><i class="fa fa-facebook-square"></i></a></li>
+                <li><a href="#" target="_blank" class="icon-youtube"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="https://www.instagram.com/templateninja/" target="_blank" class="icon-instagram"><i class="fa fa-instagram"></i></a></li>
+              </ul>
             </div><!-- .col-sm-6 -->
           </div><!-- .row -->
         </div><!-- .container -->
-      </footer><!-- #site-footer -->
-
-
+      </section><!-- #copyright -->
 
 
 

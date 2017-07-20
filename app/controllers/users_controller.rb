@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     @events = @user.events
     @upcoming_events = @events.where(complete: false)
     @past_events = @events.where(complete:true)
+    @hosted_events = Event.where(hosted_by: @user.id)
   end
 
   def edit

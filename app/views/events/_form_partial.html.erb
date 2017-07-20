@@ -26,8 +26,3 @@
   <%= text_area_tag(:description, @event.description, size: 550, maxlength:  4000) %>
 </div>
 
-
-<div>
-  <%= label_tag :categories %>
-  <%= select_tag :categories, options_from_collection_for_select(@categories, :id, :title, @categories.map {|category| category.id}), multiple: true%>
-</div>

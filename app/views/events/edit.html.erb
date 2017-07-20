@@ -110,6 +110,11 @@
   <%= label_tag :complete, "False" %>
   <%= radio_button_tag(:complete, false) %>
 </div>
+                       <h6>Category: </h6>
+                        <% @categories.each do |category| %>
+                          <input type="checkbox" name="category_ids[]" value="<%= category.id %>"><%=category.title%><br>
+                        <%end%>
 <%= submit_tag "Update Event" %>
 
 <% end %>
+

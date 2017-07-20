@@ -576,6 +576,7 @@ fieldset[disabled] .btn-danish.active {
   transition: all 0.2s linear;
 }
 .site-header.header-dark .site-branding .site-title {
+  font-family: cursive;
   margin-top: 5px;
   font-size: 36px;
   line-height: 38px;

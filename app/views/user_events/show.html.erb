@@ -108,7 +108,7 @@
                 <div class="col-md-6">
                   <section class="widget danish_widget_about">
                     <div class="about-author-container">
-                      <img src="<%= @user.avatar.url %>" alt="<%= @user.first_name %>">
+                      <img src="<%= @user.avatar %>" alt="<%= @user.first_name %>">
                       <div class="about-author-info">
                         <h2 class="widget-title"><%= @user.full_name %></h2>
                         <span class="author-subtitle"><%= @user.location %></span>
@@ -136,3 +136,24 @@
         </div><!-- #primary -->
       </div><!-- #content -->
   </div>
+
+  
+      <!-- copyright -->
+      <section id="copyright" class="copyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 copy-left">
+              Copyright © 2016 <a href="http://templateninja.net"><strong>TemplateNinja</strong></a>. All Right Reserved.
+            </div><!-- .col-sm-6 -->
+
+            <div class="col-sm-6 copy-right">
+              <ul class="social-icon">
+                <li><a href="http://twitter.com/_templateninja" target="_blank" class="icon-twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/Template-Ninja-1555671317979815" target="_blank" class="icon-facebook"><i class="fa fa-facebook-square"></i></a></li>
+                <li><a href="#" target="_blank" class="icon-youtube"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="https://www.instagram.com/templateninja/" target="_blank" class="icon-instagram"><i class="fa fa-instagram"></i></a></li>
+              </ul>
+            </div><!-- .col-sm-6 -->
+          </div><!-- .row -->
+        </div><!-- .container -->
+      </section><!-- #copyright -->

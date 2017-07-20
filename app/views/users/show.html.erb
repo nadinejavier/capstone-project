@@ -139,6 +139,9 @@
                     <h2 class="widget-title">Your upcoming events:</h2>
                     <ul>
                       <li>
+                  <%if @upcoming_events.length == 0%>
+                        <p><i>No Events</i> </p>
+                        <%else%>
                     <% @upcoming_events.each do |upcoming_event| %>
                         <div class="popular-entry-container">
                           <div class="entry-image">
@@ -152,12 +155,16 @@
                             <span class="entry-datetime"><%=upcoming_event.date.strftime('%A %B %e, %Y ')%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
-                    <%end%>
+                      <%end%>
+                  <%end%>
                       </li>
                     </ul>
                   <h2 class="widget-title">Your past events:</h2>
                     <ul>
                       <li>
+                  <%if @past_events.length == 0%>
+                    <p><i> No Events </i></p>
+                  <%else%>
                     <% @past_events.each do |past_event| %>
                         <div class="popular-entry-container">
                           <div class="entry-image">
@@ -172,6 +179,30 @@
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
+                  <%end%>
+                      </li>
+                    </ul>
+                <h2 class="widget-title"> **Events that you host**:</h2>
+                    <ul>
+                      <li>
+                  <%if @hosted_events.length == 0%>
+                    <p><i> No Events </i></p>
+                  <%else%>
+                    <% @hosted_events.each do |hosted_event| %>
+                        <div class="popular-entry-container">
+                          <div class="entry-image">
+                            <img src="<%=hosted_event.avatar.url%>" alt="/events/<%=hosted_event.id%>">
+                          </div><!-- .entry-image -->
+                          <div class="entry-content">
+                            <h4 class="entry-title">
+                              <a href="/events/<%=hosted_event.id%>" rel="bookmark"></a>
+                            </h4>
+                            <span class="entry-category"><a href="/events/<%=hosted_event.id%>"><%=hosted_event.title%></a></span>
+                            <span class="entry-datetime"><%=hosted_event.date.strftime('%A %B %e, %Y ')%></span>
+                          </div><!-- .entry-content -->
+                        </div><!-- .popular-entry-container -->
+                    <%end%>
+                  <%end%>
                       </li>
                     </ul>
                   </section><!-- .danish_widget_popular_entries -->
@@ -179,12 +210,16 @@
                <section class="widget widget_recent_comments">
                     <h2 class="widget-title">Recent Comments</h2>
                     <ul id="recentcomments">
+                  <%if @user.comments.length == 0%>
+                    <p><i>No Comments</i></p>
+                    <%else%>
                     <% @user.comments.each do |comment| %>
                       <li>
                         <a href="/events/<%=comment.event_id%>"><span class="comment-author-link"><%=comment.event.title%></span></a> 
                         "<%=comment.body%>"
                       </li>
                     <%end%>
+                <%end%>
                     </ul>
                   </section><!-- .widget_recent_comments -->
                 </div><!-- .col-md-4 -->
@@ -221,6 +256,9 @@
                     <h2 class="widget-title"> Upcoming events:</h2>
                     <ul>
                       <li>
+                  <%if @upcoming_events.length == 0%>
+                    <p><i>No Events</i></p>
+                  <%else%>
                     <% @upcoming_events.each do |upcoming_event| %>
                         <div class="popular-entry-container">
                           <div class="entry-image">
@@ -235,11 +273,15 @@
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
+                  <%end%>
                       </li>
                     </ul>
                   <h2 class="widget-title">Past events:</h2>
                     <ul>
                       <li>
+                  <%if @past_events.length == 0%>
+                    <p><i>No Events</i></p>
+                  <%else%>
                     <% @past_events.each do |past_event| %>
                         <div class="popular-entry-container">
                           <div class="entry-image">
@@ -254,6 +296,30 @@
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
+                  <%end%>
+                      </li>
+                    </ul>
+                  <h2 class="widget-title"> **Events that they host**:</h2>
+                    <ul>
+                      <li>
+                  <%if @hosted_events.length == 0%>
+                    <p><i> No Events </i></p>
+                  <%else%>
+                    <% @hosted_events.each do |hosted_event| %>
+                        <div class="popular-entry-container">
+                          <div class="entry-image">
+                            <img src="<%=hosted_event.avatar.url%>" alt="/events/<%=hosted_event.id%>">
+                          </div><!-- .entry-image -->
+                          <div class="entry-content">
+                            <h4 class="entry-title">
+                              <a href="/events/<%=hosted_event.id%>" rel="bookmark"></a>
+                            </h4>
+                            <span class="entry-category"><a href="/events/<%=hosted_event.id%>"><%=hosted_event.title%></a></span>
+                            <span class="entry-datetime"><%=hosted_event.date.strftime('%A %B %e, %Y ')%></span>
+                          </div><!-- .entry-content -->
+                        </div><!-- .popular-entry-container -->
+                    <%end%>
+                  <%end%>
                       </li>
                     </ul>
                   </section><!-- .danish_widget_popular_entries -->
@@ -261,12 +327,15 @@
                <section class="widget widget_recent_comments">
                     <h2 class="widget-title">Recent Comments</h2>
                     <ul id="recentcomments">
+                  <%if @user.comments.length == 0%>
+                    <p><i>No Comments </i></p>
                     <% @user.comments.each do |comment| %>
                       <li>
                         <a href="/events/<%=comment.event_id%>"><span class="comment-author-link"><%=comment.event.title%></span></a> 
                         "<%=comment.body%>"
                       </li>
                     <%end%>
+                  <%end%>
                     </ul>
                   </section><!-- .widget_recent_comments -->
                 </div><!-- .col-md-4 -->
@@ -277,3 +346,24 @@
         </div><!-- #primary -->
       </div><!-- #content -->
   </div>
+
+
+      <!-- copyright -->
+      <section id="copyright" class="copyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 copy-left">
+              Copyright © 2016 <a href="http://templateninja.net"><strong>TemplateNinja</strong></a>. All Right Reserved.
+            </div><!-- .col-sm-6 -->
+
+            <div class="col-sm-6 copy-right">
+              <ul class="social-icon">
+                <li><a href="http://twitter.com/_templateninja" target="_blank" class="icon-twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/Template-Ninja-1555671317979815" target="_blank" class="icon-facebook"><i class="fa fa-facebook-square"></i></a></li>
+                <li><a href="#" target="_blank" class="icon-youtube"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="https://www.instagram.com/templateninja/" target="_blank" class="icon-instagram"><i class="fa fa-instagram"></i></a></li>
+              </ul>
+            </div><!-- .col-sm-6 -->
+          </div><!-- .row -->
+        </div><!-- .container -->
+      </section><!-- #copyright -->

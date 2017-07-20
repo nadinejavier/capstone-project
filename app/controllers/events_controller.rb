@@ -77,7 +77,7 @@ before_action :authenticate_user!, except: [:index]
       avatar: params[:avatar]
       )
      event.categories.destroy_all
-      params[:categories].each do |category_id|
+      params[:category_ids].each do |category_id|
         EventCategory.create(
           event_id: event.id,
           category_id: category_id
