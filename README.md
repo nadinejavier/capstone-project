@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Full-stack rails web app with Postgres database, this is a social platform for volunteer programs and charitable events to interact and gain more members. Users of the site will be able to share and discover upcoming volunteer opportunities to spread awareness and philanthropic mindsets.
