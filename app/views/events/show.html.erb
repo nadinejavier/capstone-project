@@ -1,3 +1,4 @@
+
 <!-- NAVBAR -->
     <div id="page" class="site">
       <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
@@ -127,7 +128,7 @@
                         <h1 class="entry-title"><%=@event.title%></h1>
                       </div>
                       <div class="entry-meta">
-                        <span class="posted-on">Posted on <%=@event.created_at.strftime('%a %B %e, %Y ')%></span>
+                        <span class="posted-on">Posted on <%=@event.created_at%></span>
                         <span class="byline"> by <span class="author vcard"><a class="url fn n" href="/users/<%=@host.id%>"><%=@host.first_name%></a></span></span>
                         <span class="reading-estimation"><a data-toggle="modal" href="/user_events?event_id=<%= @event.id%>" data-target="#myModal"> <%= @event.users.length %></a> Attending</span>
                         <span class="reading-estimation"><%=@event.comments.length%> Comments</span>
@@ -135,8 +136,9 @@
                     </header><!-- .entry-header -->
                     <div class="entry-content">
                       <p><img src="<%=@event.avatar%>" alt="Keep this candle burn lighter together"></p>
-                      <h4><strong><%=@event.date.strftime('%a %B %e, %Y ')%></strong><br>
-                      <strong><%=@event.start_time.strftime('%l:%M %p')%></strong> - <strong><%=@event.end_time.strftime('%l:%M %p ')%></strong></h4>
+                      <h4><strong><%=@event.date%></strong><br>
+                      <strong><%=@event.start_time%></strong> - <strong><%=@event.end_time
+                      )%></strong></h4>
                       <p><%=@event.address%></p>               
                       <p><i><%=@event.description%></i></p>               
                     </div><!-- .entry-content -->
