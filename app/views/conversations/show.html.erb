@@ -121,7 +121,7 @@
                             <%= receipt.message.body %>
                             </h4>
                             <span class="entry-category"><a href="/users/<%=receipt.message.sender.id%>"><%= receipt.message.sender.full_name %></a></span>
-                            <span class="entry-datetime">  <%= receipt.message.created_at.strftime('%b %e, %l:%M %p') %></span>
+                            <span class="entry-datetime">  <%= receipt.message.created_at%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                       </li>

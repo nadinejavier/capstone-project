@@ -152,7 +152,7 @@
                               <a href="/events/<%=upcoming_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=upcoming_event.id%>"><%=upcoming_event.title%></a></span>
-                            <span class="entry-datetime"><%=upcoming_event.date.strftime('%A %B %e, %Y ')%></span>
+                            <span class="entry-datetime"><%=upcoming_event.date%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                       <%end%>
@@ -175,7 +175,8 @@
                               <a href="/events/<%=past_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=past_event.id%>"><%=past_event.title%></a></span>
-                            <span class="entry-datetime"><%=past_event.date.strftime('%A %B %e, %Y ')%></span>
+                            <span class="entry-datetime"><%=past_event.date%>
+                            </span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
@@ -198,7 +199,7 @@
                               <a href="/events/<%=hosted_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=hosted_event.id%>"><%=hosted_event.title%></a></span>
-                            <span class="entry-datetime"><%=hosted_event.date.strftime('%A %B %e, %Y ')%></span>
+                            <span class="entry-datetime"><%=hosted_event.date%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
@@ -269,7 +270,7 @@
                               <a href="/events/<%=upcoming_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=upcoming_event.id%>"><%=upcoming_event.title%></a></span>
-                            <span class="entry-datetime"><%=upcoming_event.date.strftime('%A %B %e, %Y ')%></span>
+                            <span class="entry-datetime"><%=upcoming_event.date)%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
@@ -292,7 +293,7 @@
                               <a href="/events/<%=past_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=past_event.id%>"><%=past_event.title%></a></span>
-                            <span class="entry-datetime"><%=past_event.date.strftime('%A %B %e, %Y ')%></span>
+                            <span class="entry-datetime"><%=past_event.date%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
@@ -315,7 +316,7 @@
                               <a href="/events/<%=hosted_event.id%>" rel="bookmark"></a>
                             </h4>
                             <span class="entry-category"><a href="/events/<%=hosted_event.id%>"><%=hosted_event.title%></a></span>
-                            <span class="entry-datetime"><%=hosted_event.date.strftime('%A %B %e, %Y ')%></span>
+                            <span class="entry-datetime"><%=hosted_event.date%></span>
                           </div><!-- .entry-content -->
                         </div><!-- .popular-entry-container -->
                     <%end%>
