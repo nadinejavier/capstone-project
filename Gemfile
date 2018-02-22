@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'better_errors'
  gem 'binding_of_callers' 
  gem 'mailboxer', '~> 0.15.1'
- gem "paperclip", "~> 5.0.0"
+ gem "paperclip", "~> 5.2.0"
  gem 'geocoder'
 
 # Use Capistrano for deployment
