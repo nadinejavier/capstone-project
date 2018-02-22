@@ -100,14 +100,14 @@
       </div><!-- .site-header-affix-wrapper -->
 
 <section class="widget widget_recent_comments">
-  <h2 class="widget-title">Recent Comments</h2>
+  <h2 class="widget-title">Recent Conversations</h2>
   <ul id="recentcomments">
   <% @conversations.each do |conversation| %>
       <li>
   <% if current_user == conversation.originator %>
-      <%= link_to "Talk to #{conversation.subject}", conversation_path(conversation) %> <p>created on <%=conversation.created_at.strftime('%A %B %e, %Y ')%></p>
+      <%= link_to "Talk to #{conversation.subject}", conversation_path(conversation) %> <p>created on <%=conversation.created_at%></p>
   <%else%>
-      <%= link_to "Talk to #{conversation.originator.full_name}", conversation_path(conversation) %>  <p>created on <%=conversation.created_at.strftime('%A %B %e, %Y ')%></p>
+      <%= link_to "Talk to #{conversation.originator.full_name}", conversation_path(conversation) %>  <p>created on <%=conversation.created_at%></p>
   <% end %>
       </li>
   <%end%>
