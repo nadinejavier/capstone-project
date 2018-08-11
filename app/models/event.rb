@@ -10,13 +10,13 @@ class Event < ApplicationRecord
   validates :description, length: {maximum: 5000}
   acts_as_messageable
   
-  has_attached_file :avatar,
-                    :styles => { :medium => "150x150>", :thumb => "44x44#" },
-                    :default_url => "/images/default.png"
+  # has_attached_file :avatar,
+  #                   :styles => { :medium => "150x150>", :thumb => "44x44#" },
+  #                   :default_url => "/images/default.png"
 
-  validates_attachment :avatar, 
-                       :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
-                       :size => { :in => 0..1000.kilobytes }
+  # validates_attachment :avatar, 
+  #                      :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
+  #                      :size => { :in => 0..1000.kilobytes }
 
 
 end

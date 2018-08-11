@@ -135,10 +135,10 @@
                       </div><!-- .entry-meta -->
                     </header><!-- .entry-header -->
                     <div class="entry-content">
-                      <p><img src="<%=@event.avatar%>" alt="Keep this candle burn lighter together"></p>
+                      <p><img src="/images/default.png" alt="Keep this candle burn lighter together"></p>
                       <h4><strong><%=@event.date%></strong><br>
                       <strong><%=@event.start_time%></strong> - <strong><%=@event.end_time
-                      )%></strong></h4>
+                      %></strong></h4>
                       <p><%=@event.address%></p>               
                       <p><i><%=@event.description%></i></p>               
                     </div><!-- .entry-content -->
@@ -266,7 +266,7 @@
                       <div class="col-md-4 col-sm-10">
                         <div class="post-container">
                           <div class="post-thumbnail">
-                            <a href="/events/<%=@random_event.id%>"><img src="<%=@random_event.avatar%>" alt="Eventity!"></a>
+                            <a href="/events/<%=@random_event.id%>"><img src="/images/default.png"alt="Eventity!"></a>
                           </div><!-- .post-thumbnail -->
                           <span class="post-meta"><%=@random_event.date%></span>
                           <h2 class="post-title"><a href="/events/<%=@random_event.id%>"><%=@random_event.title%></a></h2>
