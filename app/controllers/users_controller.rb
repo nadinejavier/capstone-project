@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def show #User's profile page
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     @events = @user.events
     @upcoming_events = @events.where(complete: false)
     @past_events = @events.where(complete:true)

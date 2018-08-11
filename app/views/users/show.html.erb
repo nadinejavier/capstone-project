@@ -111,7 +111,7 @@
                 <div class="col-md-6">
                   <section class="widget danish_widget_about">
                     <div class="about-author-container">
-                      <img src="<%= @user.avatar %>" alt="<%= @user.first_name %>">
+                      <img src="/images/default.png" alt="<%= @user.first_name %>">
                       <div class="about-author-info">
                         <h2 class="widget-title"><%= @user.full_name %></h2>
                         <span class="author-subtitle"><%= @user.location %></span>
@@ -145,7 +145,7 @@
                     <% @upcoming_events.each do |upcoming_event| %>
                         <div class="popular-entry-container">
                           <div class="entry-image">
-                            <img src="<%=upcoming_event.avatar_file_name%>" alt="/events/<%=upcoming_event.id%>">
+                            <img src="/images/default.png" alt="/events/<%=upcoming_event.id%>">
                           </div><!-- .entry-image -->
                           <div class="entry-content">
                             <h4 class="entry-title">
@@ -308,7 +308,7 @@
                     <% @hosted_events.each do |hosted_event| %>
                         <div class="popular-entry-container">
                           <div class="entry-image">
-                            <img src="<%=hosted_event.avatar.url%>" alt="/events/<%=hosted_event.id%>">
+                            <img src="/images/default.png" alt="/events/<%=hosted_event.id%>">
                           </div><!-- .entry-image -->
                           <div class="entry-content">
                             <h4 class="entry-title">
